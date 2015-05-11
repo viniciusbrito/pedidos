@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Produto extends Model {
 
-	Use SoftDeletes;
+	use SoftDeletes;
 
     protected $fillable = [
         'codigo',
@@ -13,6 +13,8 @@ class Produto extends Model {
         'descricao',
         'preco'
     ];
+
+    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -49,15 +49,15 @@ return [
 	],
 	"mimes"                => "The :attribute must be a file of type: :values.",
 	"min"                  => [
-		"numeric" => "The :attribute must be at least :min.",
+		"numeric" => "O campo :attribute deve ter no mínimo :min número.",
 		"file"    => "The :attribute must be at least :min kilobytes.",
-		"string"  => "The :attribute must be at least :min characters.",
+		"string"  => "O campo :attribute deve ter no mínimo :min caracteres.",
 		"array"   => "The :attribute must have at least :min items.",
 	],
 	"not_in"               => "The selected :attribute is invalid.",
-	"numeric"              => "The :attribute must be a number.",
+	"numeric"              => "O campo :attribute deve ser um número.",
 	"regex"                => "The :attribute format is invalid.",
-	"required"             => "The :attribute field is required.",
+	"required"             => "O campo :attribute é obrigatório.",
 	"required_if"          => "The :attribute field is required when :other is :value.",
 	"required_with"        => "The :attribute field is required when :values is present.",
 	"required_with_all"    => "The :attribute field is required when :values is present.",
@@ -70,8 +70,8 @@ return [
 		"string"  => "The :attribute must be :size characters.",
 		"array"   => "The :attribute must contain :size items.",
 	],
-	"unique"               => "The :attribute has already been taken.",
-	"url"                  => "The :attribute format is invalid.",
+	"unique"               => "O :attribute já existe.",
+	"url"                  => "A :attribute está no formado inválido.",
 	"timezone"             => "The :attribute must be a valid zone.",
 
 	/*
@@ -102,6 +102,8 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+        'preco' => 'preço'
+    ],
 
 ];

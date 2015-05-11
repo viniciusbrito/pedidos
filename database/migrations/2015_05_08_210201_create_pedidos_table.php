@@ -16,6 +16,7 @@ class CreatePedidosTable extends Migration {
 		{
 			$table->increments('id');
 			$table->timestamps();
+            $table->softDeletes();
 		});
 
         Schema::create('pedido_produto', function(Blueprint $table)

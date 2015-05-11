@@ -19,8 +19,8 @@ class CreateProdutosTable extends Migration {
             $table->string('nome', 150);
             $table->text('descricao')->nullable();
             $table->decimal('preco', 5, 2);
-            $table->integer('user_id')->unsigned();
 			$table->timestamps();
+            $table->softDeletes();
 		});
 	}
 
