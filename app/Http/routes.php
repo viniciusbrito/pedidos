@@ -25,6 +25,7 @@ Route::post('produto', 'ProdutoController@store');
 */
 
 Route::resource('produto', 'ProdutoController');
+Route::resource('revendedor', 'RevendedoraController');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

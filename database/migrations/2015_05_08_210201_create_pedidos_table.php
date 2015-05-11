@@ -15,9 +15,16 @@ class CreatePedidosTable extends Migration {
 		Schema::create('pedidos', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('revendedora_id')->unsigned();
 			$table->timestamps();
             $table->softDeletes();
-		});
+
+
+            $table->foreign('revendedora_id')
+                ->references('id')
+                ->on('revendedoras')
+                ->onDelete('restrict');
+        });
 
         Schema::create('pedido_produto', function(Blueprint $table)
         {
