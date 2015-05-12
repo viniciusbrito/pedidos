@@ -14,7 +14,7 @@ class Revendedora extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pedido()
+    public function pedidos()
     {
         return $this->hasMany('App\Pedido');
     }

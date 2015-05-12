@@ -1,4 +1,4 @@
-@extends('produto.index')
+@extends('app')
 
 @section('content')
     @include('errors.list')

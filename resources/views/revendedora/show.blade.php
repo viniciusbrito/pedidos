@@ -1,4 +1,4 @@
-@extends('revendedora.index')
+@extends('app')
 
 @section('content')
     <h1>{{ $revendedor->nome }}</h1>

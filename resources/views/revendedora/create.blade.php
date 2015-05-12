@@ -1,4 +1,4 @@
-@extends('revendedora.index')
+@extends('app')
 
 @section('content')
     <legend><span class="glyphicon glyphicon-edit"></span> Cadastrar Novo Revendedor</legend>

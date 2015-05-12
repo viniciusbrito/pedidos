@@ -1,4 +1,4 @@
-@extends('produto.index')
+@extends('app')
 
 @section('content')
     <legend><span class="glyphicon glyphicon-saved"></span> Protudos Cadastrados</legend>
@@ -9,7 +9,7 @@
                     <td><strong>Código</strong></td>
                     <td><strong>Nome</strong></td>
                     <td><strong>Descrição</strong></td>
-                    <td><strong>Preço</strong></td>
+                    <td colspan="3"><strong>Preço</strong></td>
                 </thead>
                 @foreach($produtos as $produto)
                     <tr>
@@ -17,11 +17,13 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->descricao }}</td>
                         <td>{{ $produto->preco }}</td>
-                        <td><a href="{{ url('/produto', $produto->id) }}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
-                        <td><a href="{{ url('/produto', $produto->id) }}/remover" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Remover</a></td>
+                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
+                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/remover" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Remover</a></td>
                     </tr>
-
                 @endforeach
+                <tr>
+                    <td colspan="6" class="text-center">{!! $produtos->render() !!}</td>
+                </tr>
             </table>
         </div>
     @else

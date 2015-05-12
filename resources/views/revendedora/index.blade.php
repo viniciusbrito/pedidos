@@ -25,33 +25,34 @@
             <a class="navbar-brand" href="/">Home</a>
         </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
-            <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Revendedors <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ url('revendedor') }}">Consultar</a></li>
-                        <li><a href="{{ url('revendedor/create') }}">Criar</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produtos <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ url('produto') }}">Consultar</a></li>
-                        <li><a href="{{ url('produto/create') }}">Cadastrar Produto</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Consultar</a></li>
-                        <li><a href="#">Criar</a></li>
-                        <li><a href="#">Apagar</a></li>
-                    </ul>
-                </li>
-            </ul>
-            @if(!Auth::guest())
+        @if(!Auth::guest())
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Revendedors <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('revendedor') }}">Consultar</a></li>
+                            <li><a href="{{ url('revendedor/create') }}">Criar</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produtos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('produto') }}">Consultar</a></li>
+                            <li><a href="{{ url('produto/create') }}">Cadastrar Produto</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#">Consultar</a></li>
+                            <li><a href="#">Criar</a></li>
+                            <li><a href="#">Apagar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" role="menuitem">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Bem vindo {{ Auth::user()->name }} <span class="caret"></a>
@@ -61,12 +62,25 @@
                         </ul>
                     </li>
                 </ul>
-            @endif
-        </div><!-- /.navbar-collapse -->
+            </div><!-- /.navbar-collapse -->
+        @else
+            <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
+                    <li><a href="{{ url('/auth/register') }}">Register</a></li>>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        @endif
     </div>
 </nav>
 
 <div class="container" style="padding-top:100px;">
+    @if(Session::has('flash_message'))
+        <div class="alert {{ Session::get('flash_type_message') }}">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong>{{session('flash_message')}}</strong>
+        </div>
+    @endif
     @yield('content')
 </div>
 

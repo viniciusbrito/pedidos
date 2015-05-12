@@ -22,8 +22,7 @@ class RevendedoraController extends Controller {
 	 */
 	public function index()
 	{
-
-        return view('revendedora.all')->with('revendedores', Revendedora::orderBy('nome')->paginate(2));
+        return view('revendedora.all')->with('revendedores', Revendedora::orderBy('nome')->paginate(5));
 	}
 
 	/**
@@ -44,7 +43,11 @@ class RevendedoraController extends Controller {
 	public function store(RevendedoraRequest $request)
 	{
 		Revendedora::create($request->all());
-        return redirect('revendedor');
+
+        return redirect('revendedor')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Usuário cadastrado com sucesso!'
+        ]);
 	}
 
 	/**
@@ -94,7 +97,10 @@ class RevendedoraController extends Controller {
 
         $revendedor->update($request->all());
 
-        return redirect('revendedor');
+        return redirect('revendedor')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Usuário atualizado com sucesso!'
+        ]);
 	}
 
 	/**

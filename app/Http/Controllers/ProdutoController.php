@@ -27,7 +27,7 @@ class ProdutoController extends Controller {
         {
             //return redirect('/produto');
         }
-        $produtos = Produto::all();
+        $produtos = Produto::orderBy('nome')->paginate(10);
         return view('produto.all')->with('produtos', $produtos);
     }
 
