@@ -23,4 +23,18 @@ class Produto extends Model {
     {
         return $this->belongsToMany('App\Pedido');
     }
+
+    /**
+     * Retorna a quantidade de um produto no pedido
+     * @return mixed
+     */
+    public function quantidade()
+    {
+        return $this->pivot->quantidade;
+    }
+
+    public function ahpagar()
+    {
+        return $this->preco * $this->quantidade();
+    }
 }
