@@ -19,6 +19,6 @@
 </div>
 
 <div class="form-group">
-    {!! Form::submit($submiteButtonText, ['class' => 'btn btn-primary']) !!}
+    <button class="btn btn-primary"><span class="glyphicon glyphicon-{{ $gly }}"></span> {{ $submiteButtonText }}</button>
     {!! Html::link(url('produto'), 'Cancelar', ['class' => 'btn btn-danger']) !!}
 </div>

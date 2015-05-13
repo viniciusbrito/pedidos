@@ -115,4 +115,10 @@ class RevendedoraController extends Controller {
         return redirect('revendedor');
 	}
 
+
+    public function search($key)
+    {
+        $revendedor = Revendedora::all()->where('nome', 'like', $key);
+        return redirect('revendedora.show')->with('revendedor', $revendedor);
+    }
 }

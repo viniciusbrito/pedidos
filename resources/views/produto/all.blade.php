@@ -17,8 +17,8 @@
                         <td>{{ $produto->nome }}</td>
                         <td>{{ $produto->descricao }}</td>
                         <td>{{ $produto->preco }}</td>
-                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Editar</a></td>
-                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/remover" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Remover</a></td>
+                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/edit" class="btn btn-success"title="Visualizar"><span class="glyphicon glyphicon-edit"></span></a></td>
+                        <td class="text-center"><a href="{{ url('/produto', $produto->id) }}/remover" class="btn btn-danger"title="Remover"><span class="glyphicon glyphicon-trash"></span></a></td>
                     </tr>
                 @endforeach
                 <tr>

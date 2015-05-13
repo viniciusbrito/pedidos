@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Revendedors <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Revendedor <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('revendedor') }}">Consultar</a></li>
                             <li><a href="{{ url('revendedor/create') }}">Criar</a></li>
@@ -46,9 +46,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Consultar</a></li>
-                            <li><a href="#">Criar</a></li>
-                            <li><a href="#">Apagar</a></li>
+                            <li><a href="{{ url('pedido') }}">Consultar</a></li>
+                            <li><a href="{{ url('pedido/create') }}">Criar</a></li>
                         </ul>
                     </li>
                 </ul>
