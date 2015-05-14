@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProdutoRequest;
 use App\Http\Requests\UpdateProdutoRequest;
 use App\Produto;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProdutoController extends Controller {
 
@@ -106,5 +108,14 @@ class ProdutoController extends Controller {
         Produto::destroy($id);
         return redirect('produto');
 
+    }
+
+    public function search(Request $request)
+    {
+        $key = $request->key;
+
+        $produto = Produto::where('codigo', 'like', '%'.$key.'%')->get()->toJSon();
+
+        return $produto;
     }
 }

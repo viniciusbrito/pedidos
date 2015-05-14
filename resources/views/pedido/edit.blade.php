@@ -1,21 +1,28 @@
 @extends('app')
 @section('content')
+@include('errors.list')
 <legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong> {{ $pedido->revendedora->nome }}</legend>
 
+<div id="search_produto" class="panel panel-success">
+    {!! Form::open(['route' => 'produto.search', 'method' => 'POST', 'id' => 'search']) !!}
+    {!! Form::text('key', null, ['class' => 'form-control text-uppercase', 'required', 'id' => 'input', 'placeholder' => 'Código do produto', 'autofocus']) !!}
+    {!! Form::close() !!}
+</div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         {!! Form::open(['method' => 'PATCH', 'route' => ['pedido.update', $pedido->id]]) !!}
-        {!! Form::label('revendedor', 'Produto') !!}
-        {!! Form::text('quantidade', null, ['class' => 'form-control', 'required']) !!}
-        <!--<div id="all_produtos" class="alert-success"> -->
-
-                {!! Form::select('produto_id', $produtos, null, ['class' => 'form-controll', 'required']) !!}
-
-        <!--</div> -->
-        <input type="submit" class="btn btn-default" value="enviar"/>
+        <div id="list_produto" class="list-group"><!-- Carrega aqui os dados de pesquisa do produto --></div>
+    </div>
+    <div class="col-sm-2">
+        {!! Form::text('quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
+    </div>
+    <div class="col-sm-5">
+        {!! Form::hidden('produto_id', null, ['id' => 'produto_id']) !!}
+        <input type="submit" class="btn btn-info" value="Adicionar"/>
         {!! Form::close() !!}
     </div>
 </div>
+
 <br/>
 <div class="panel panel-info">
     <div class="panel-heading">

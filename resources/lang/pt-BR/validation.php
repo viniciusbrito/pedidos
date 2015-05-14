@@ -39,7 +39,7 @@ return [
 	"exists"               => "The selected :attribute is invalid.",
 	"image"                => "The :attribute must be an image.",
 	"in"                   => "The selected :attribute is invalid.",
-	"integer"              => "The :attribute must be an integer.",
+	"integer"              => "O campo :attribute precisa ser um número inteiro.",
 	"ip"                   => "The :attribute must be a valid IP address.",
 	"max"                  => [
 		"numeric" => "The :attribute may not be greater than :max.",
@@ -103,7 +103,8 @@ return [
 	*/
 
 	'attributes' => [
-        'preco' => 'preço'
+        'preco' => 'preço',
+        'produto_id' => 'código'
     ],
 
 ];

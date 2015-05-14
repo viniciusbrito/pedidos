@@ -89,5 +89,59 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+
+    $("#input").keyup(function(event){
+
+        $('#list_produto').empty();
+
+        if($(this).val().length < 1) {
+            $('#produto_id').val(0);
+            return false;
+        }
+
+        $('#search').submit();
+    });
+
+    $('#search').submit(function(event){
+        event.preventDefault();
+
+        var $form = $(this),
+                key = $form.find("input[name='key']").val(),
+                token = $form.find("input[name='_token']").val(),
+                url = $form.attr("action");
+
+        $.ajax({
+            url:url,
+            type:'post',
+            dataType:'json',
+            success: function (data) {
+                for($i = 0; $i < data.length; $i++)
+                {
+                    $('#list_produto').append('<a href="#'+data[$i].id+'" class="list-group-item"><span class="glyphicon glyphicon-plus"></span> '+
+                        data[$i].codigo +' - '+
+                        data[$i].nome +' - R$ '+
+                        data[$i].preco +
+                        "</a>");
+                }
+            },
+            data: {key:key, _token:token}
+        });
+    });
+
+    $("body").on("click", "a.list-group-item", function(event){
+        event.preventDefault();
+        var id = $(this).attr('href').split("#")[1];
+        var text = $(this).text();
+        $('#input').val(text);
+        $('#produto_id').val(id);
+        $('#list_produto').empty();
+
+
+    });
+
+</script>
+
 </body>
 </html>

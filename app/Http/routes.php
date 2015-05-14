@@ -25,10 +25,12 @@ Route::post('produto', 'ProdutoController@store');
 */
 
 Route::resource('produto', 'ProdutoController');
+Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoController@search']);
+
 Route::resource('revendedor', 'RevendedoraController');
 Route::post('revendedor/{key}', 'RevendedoraController@search');
+
 Route::resource('pedido', 'PedidoController');
-Route::get('pedido/produtos', 'PedidoController@produtos');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
