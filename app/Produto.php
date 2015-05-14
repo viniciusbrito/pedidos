@@ -35,6 +35,6 @@ class Produto extends Model {
 
     public function ahpagar()
     {
-        return $this->preco * $this->quantidade();
+        return number_format($this->preco * $this->quantidade(), 2);
     }
 }

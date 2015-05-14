@@ -1,13 +1,17 @@
 @extends('app')
 @section('content')
-<legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong></legend>
+<legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong> {{ $pedido->revendedora->nome }}</legend>
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {!! Form::open(['method' => 'PATCH', 'action' => 'PedidoController@update']) !!}
+        {!! Form::open(['method' => 'PATCH', 'route' => ['pedido.update', $pedido->id]]) !!}
         {!! Form::label('revendedor', 'Produto') !!}
-        {!! Form::text('produto', null, ['class' => 'form-control', 'required']) !!}
-        <div id="all_produtos" class="alert-success">Carrega os produtos aqui</div>
+        {!! Form::text('quantidade', null, ['class' => 'form-control', 'required']) !!}
+        <!--<div id="all_produtos" class="alert-success"> -->
+
+                {!! Form::select('produto_id', $produtos, null, ['class' => 'form-controll', 'required']) !!}
+
+        <!--</div> -->
         <input type="submit" class="btn btn-default" value="enviar"/>
         {!! Form::close() !!}
     </div>
@@ -40,10 +44,10 @@
                                 {{ $produto->quantidade() }}
                             </td>
                             <td>
-                                {{ $produto->preco }}
+                                R$ {{ $produto->preco }}
                             </td>
                             <td>
-                                {{ $produto->ahpagar() }}
+                                R$ {{ $produto->ahpagar() }}
                             </td>
                             <td>
                                 {!! Form::open(['route' => ['pedido.destroy', $pedido->id], 'method' => 'DELETE']) !!}

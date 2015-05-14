@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Pedido;
 use App\Produto;
 use App\Revendedora;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PedidoController extends Controller {
@@ -95,9 +96,18 @@ class PedidoController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$pedido = Pedido::find($id);
+        $produto_id = $request->produto_id;
+        $quantidade = $request->quantidade;
+
+        if(is_null($pedido))
+            return view('errors.503');
+
+        $pedido->produto()->attach([$produto_id], ['quantidade' => $quantidade]);
+
+        return redirect('pedido/'.$pedido->id.'/edit');
 	}
 
 	/**
@@ -114,6 +124,6 @@ class PedidoController extends Controller {
 		return redirect('pedido/'.$pedido->id.'/edit');
 	}
 
-    public function
+
 
 }
