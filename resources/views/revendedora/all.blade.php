@@ -22,7 +22,11 @@
                         </td>
                         <td  class="text-center"><a href="{{ url('/revendedor', $revendedor->id) }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                         <td class="text-center"><a href="{{ url('/revendedor', $revendedor->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
-                        <td class="text-center"><a href="{{ url('/revendedor', $revendedor->id) }}/remover" class="btn btn-danger" title="Remover"><span class="glyphicon glyphicon-trash"></span></a></td>
+                        <td class="text-center">
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['revendedor.destroy', $revendedor->id]]) !!}
+                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
                 <tr>

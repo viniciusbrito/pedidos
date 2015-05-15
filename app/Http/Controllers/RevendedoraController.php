@@ -111,8 +111,18 @@ class RevendedoraController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Revendedora::destroy($id);
-        return redirect('revendedor');
+        $revendedor = Revendedora::find($id);
+
+        if(is_null($revendedor))
+            return view('errors.503');
+
+        $revendedor->pedidos()->delete();
+        $revendedor->delete();
+
+        return redirect('revendedor')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Usuário removido com sucesso!'
+        ]);
 	}
 
 
