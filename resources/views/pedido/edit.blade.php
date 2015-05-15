@@ -18,7 +18,7 @@
     </div>
     <div class="col-sm-5">
         {!! Form::hidden('produto_id', null, ['id' => 'produto_id']) !!}
-        <input type="submit" class="btn btn-info" value="Adicionar"/>
+        <button type="submit" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> Adicionar</button>
         {!! Form::close() !!}
     </div>
 </div>
@@ -26,7 +26,7 @@
 <br/>
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">Produtos adicionados</h3>
+        <h3 class="panel-title"><span class="glyphicon glyphicon-th-list"></span> Produtos adicionados</h3>
     </div>
     @if(count($pedido->produto))
         <div class="panel-body">
@@ -71,7 +71,7 @@
     @endif
 </div>
 <div class="panel panel-info">
-    <div class="panel panel-heading"><h3 class="panel-title">Informações do pedido</h3></div>
+    <div class="panel panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Informações do pedido</h3></div>
     <div class="panel-body">
         <table class="table table-striped table-responsive">
             <thead>
@@ -81,13 +81,13 @@
             </thead>
             <tr>
                 <td>
-                    <a href="{{ url('pedido') }}" class="btn btn-primary">Salvar</a>
+                    <a href="{{ url('pedido') }}" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Salvar</a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-success">Finalizar</a>
+                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Finalizar</a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-danger">Cancelar</a>
+                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Excluir</a>
                 </td>
             </tr>
         </table>

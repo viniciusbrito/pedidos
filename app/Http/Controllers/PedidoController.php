@@ -72,7 +72,12 @@ class PedidoController extends Controller
      */
     public function show($id)
     {
-        //
+        $pedido = Pedido::find($id);
+
+        if (is_null($pedido))
+            return view('errors.503');
+
+        return view('pedido.show')->with('pedido', $pedido);
     }
 
     /**
@@ -89,9 +94,7 @@ class PedidoController extends Controller
         if (is_null($pedido))
             return view('errors.503');
 
-        $produtos = Produto::orderBy('nome')->lists('nome', 'id');
-
-        return view('pedido.edit')->with(['pedido' => $pedido, 'produtos' => $produtos]);
+        return view('pedido.edit')->with('pedido', $pedido);
     }
 
     /**
@@ -110,6 +113,8 @@ class PedidoController extends Controller
             return view('errors.503');
 
         $pedido->produto()->attach([$produto_id], ['quantidade' => $quantidade]);
+        $pedido->updated_at = Carbon::now();
+        $pedido->save();
 
         return redirect('pedido/' . $pedido->id . '/edit');
     }

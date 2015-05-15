@@ -180,7 +180,6 @@
 
     $("body").on("click", "a.revendedor", function(event){
         event.preventDefault();
-        alert(0);
         var id = $(this).attr('href').split("#")[1];
         var text = $(this).text();
         $('#input_revendedor').val(text);

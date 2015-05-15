@@ -1,7 +1,9 @@
 @extends('app')
 @section('content')
     @include('errors.list')
-
+    <legend>
+        <span class="glyphicon glyphicon-plus"></span> Novo pedido
+    </legend>
     <div class="row">
         {!! Form::open(['method' => 'POST', 'route' => 'revendedora.search', 'id' => 'search_revendedor']) !!}
         <div class="col-sm-10">
@@ -22,5 +24,6 @@
             </div>
         </div>
     </div>
+    <a href="{{ url('pedido') }}" class="btn btn-default">Voltar</a>
 
 @endsection
