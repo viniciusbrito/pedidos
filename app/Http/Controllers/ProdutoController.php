@@ -101,8 +101,7 @@ class ProdutoController extends Controller {
         return redirect('produto')->with([
             'flash_type_message' => 'alert-success',
             'flash_message' => 'Produto atualizado com sucesso!'
-        ]);;
-
+        ]);
     }
 
     /**
@@ -111,9 +110,17 @@ class ProdutoController extends Controller {
      */
     public function destroy($id)
     {
-        Produto::destroy($id);
-        return redirect('produto');
+        $produto = Produto::find($id);
 
+        if(is_null($produto))
+            return view('errors.503');
+
+        $produto->delete();
+
+        return redirect('produto')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Produto removido com sucesso!'
+        ]);;
     }
 
     public function search(Request $request)
