@@ -57,7 +57,7 @@
                                 R$ {{ $produto->ahpagar() }}
                             </td>
                             <td>
-                                {!! Form::open(['route' => ['pedido.destroy', $pedido->id], 'method' => 'DELETE']) !!}
+                                {!! Form::open(['route' => ['pedido.remove', $pedido->id], 'method' => 'POST']) !!}
                                 @include('pedido.form_remover', ['produto_id' => $produto->id])
                             </td>
                         </tr>
@@ -87,7 +87,9 @@
                     <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Finalizar</a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Excluir</a>
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}
+                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Excluir</button>
+                    {!! Form::close() !!}
                 </td>
             </tr>
         </table>

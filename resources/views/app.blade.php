@@ -54,7 +54,7 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" role="menuitem">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Sua Conta <span class="caret"></a>
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Sua Conta <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">Editar</a></li>
                             <li><a href="{{ url('auth/logout') }}">Sair</a></li>

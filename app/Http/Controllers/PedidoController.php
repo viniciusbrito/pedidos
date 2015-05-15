@@ -31,7 +31,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::orderBy('created_at', 'desc')->paginate(5);
+        $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5);
 
         return view('pedido.index', compact('pedidos', $pedidos));
     }
@@ -120,16 +120,39 @@ class PedidoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove um produto do pedido.
      *
      * @param  int $id
      * @return Response
      */
-    public function destroy($id, Request $request)
+    public function remove($id, Request $request)
     {
         $produto_id = $request['produto_id'];
         $pedido = Pedido::find($id);
         $pedido->produto()->detach($produto_id);
+        $pedido->updated_at = Carbon::now();
+        $pedido->save();
         return redirect('pedido/' . $pedido->id . '/edit');
+    }
+
+    /**
+     * Remove um pedido.
+     *
+     * @param  int $id
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        $pedido = Pedido::find($id);
+
+        if (is_null($pedido))
+            return view('errors.503');
+
+        //$pedido->produto()->detach();
+        $pedido->delete();
+        return redirect('pedido/')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Pedido removido com sucesso!'
+        ]);
     }
 }

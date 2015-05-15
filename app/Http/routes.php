@@ -15,15 +15,6 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-/*
-Route::get('/produto', 'ProdutoController@index');
-Route::get('/produto/cadastrar/', 'ProdutoController@create');
-Route::get('/produto/{id}/remover', 'ProdutoController@delete');
-Route::get('/produto/{id}/editar', 'ProdutoController@edit');
-Route::get('/produto/{id}', 'ProdutoController@show');
-Route::post('produto', 'ProdutoController@store');
-*/
-
 Route::resource('produto', 'ProdutoController');
 Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoController@search']);
 
@@ -31,6 +22,7 @@ Route::resource('revendedor', 'RevendedoraController');
 Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 
 Route::resource('pedido', 'PedidoController');
+Route::post('pedido/{pedido}', ['as' => 'pedido.remove', 'uses' => 'PedidoController@remove']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
