@@ -92,7 +92,7 @@
 
 <script type="text/javascript">
 
-    $("#input").keyup(function(event){
+    $("#input_produto").keyup(function(event){
 
         $('#list_produto').empty();
 
@@ -101,10 +101,10 @@
             return false;
         }
 
-        $('#search').submit();
+        $('#search_produto').submit();
     });
 
-    $('#search').submit(function(event){
+    $('#search_produto').on('submit', function(event){
         event.preventDefault();
 
         var $form = $(this),
@@ -119,7 +119,7 @@
             success: function (data) {
                 for($i = 0; $i < data.length; $i++)
                 {
-                    $('#list_produto').append('<a href="#'+data[$i].id+'" class="list-group-item"><span class="glyphicon glyphicon-plus"></span> '+
+                    $('#list_produto').append('<a href="#'+data[$i].id+'" class="list-group-item produto"><span class="glyphicon glyphicon-plus"></span> '+
                         data[$i].codigo +' - '+
                         data[$i].nome +' - R$ '+
                         data[$i].preco +
@@ -130,17 +130,63 @@
         });
     });
 
-    $("body").on("click", "a.list-group-item", function(event){
+    $("body").on("click", "a.list-group-item.produto", function(event){
         event.preventDefault();
         var id = $(this).attr('href').split("#")[1];
         var text = $(this).text();
-        $('#input').val(text);
+        $('#input_produto').val(text);
         $('#produto_id').val(id);
         $('#list_produto').empty();
-
-
     });
 
+    /*REVENDEDOR==================================================================================================================== */
+
+    $("#input_revendedor").keyup(function(event){
+
+        $('#list_revendedor').empty();
+
+        if($(this).val().length < 1) {
+            $('#revendedor_id').val(0);
+            return false;
+        }
+
+        $('#search_revendedor').submit();
+    });
+
+
+    $('#search_revendedor').submit(function(event){
+        event.preventDefault();
+
+        $('#list_revenderora').empty();
+
+        var $form = $(this),
+                key = $form.find("input[name='key']").val(),
+                token = $form.find("input[name='_token']").val(),
+                url = $form.attr("action");
+
+        $.ajax({
+            url:url,
+            type:'post',
+            dataType:'json',
+            success: function (data) {
+                for($i = 0; $i < data.length; $i++)
+                {
+                    $('#list_revendedor').append('<a href="#'+data[$i].id+'" class="list-group-item revendedor"><span class="glyphicon glyphicon-plus"></span> '+data[$i].nome +'</a>');
+                }
+            },
+            data: {key:key, _token:token}
+        });
+    });
+
+    $("body").on("click", "a.revendedor", function(event){
+        event.preventDefault();
+        alert(0);
+        var id = $(this).attr('href').split("#")[1];
+        var text = $(this).text();
+        $('#input_revendedor').val(text);
+        $('#revendedor_id').val(id);
+        $('#list_revendedor').empty();
+    });
 </script>
 
 </body>

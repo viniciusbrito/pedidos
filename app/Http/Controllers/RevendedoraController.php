@@ -116,9 +116,12 @@ class RevendedoraController extends Controller {
 	}
 
 
-    public function search($key)
+    public function search(Request $request)
     {
-        $revendedor = Revendedora::all()->where('nome', 'like', $key);
-        return redirect('revendedora.show')->with('revendedor', $revendedor);
+        $key = $request->key;
+
+        $revendedor  = Revendedora::where('nome', 'like', '%'.$key.'%')->get()->toJson();
+
+        return $revendedor;
     }
 }

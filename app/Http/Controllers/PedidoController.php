@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\PedidoAddProdutoRequest;
+use App\Http\Requests\CreatePedidoRequest;
 
 class PedidoController extends Controller
 {
@@ -30,7 +31,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::orderBy('created_at', 'desc')->paginate(4);
+        $pedidos = Pedido::orderBy('created_at', 'desc')->paginate(5);
 
         return view('pedido.index', compact('pedidos', $pedidos));
     }
@@ -52,11 +53,11 @@ class PedidoController extends Controller
      *
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreatePedidoRequest $request)
     {
         $id = $request->all();
 
-        $revendedor = Revendedora::find($id['revendedor']);
+        $revendedor = Revendedora::find($id['revendedor_id']);
 
         $pedido = $revendedor->pedidos()->create($id);
 

@@ -8,7 +8,7 @@ use App\Http\Requests\UpdateProdutoRequest;
 use App\Produto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+
 
 class ProdutoController extends Controller {
 

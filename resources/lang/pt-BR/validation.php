@@ -104,7 +104,8 @@ return [
 
 	'attributes' => [
         'preco' => 'preço',
-        'produto_id' => 'código'
+        'produto_id' => 'código',
+        'revendedor_id' => 'revendedor'
     ],
 
 ];

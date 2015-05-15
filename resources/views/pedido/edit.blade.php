@@ -3,15 +3,15 @@
 @include('errors.list')
 <legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong> {{ $pedido->revendedora->nome }}</legend>
 
-<div id="search_produto" class="panel panel-success">
-    {!! Form::open(['route' => 'produto.search', 'method' => 'POST', 'id' => 'search']) !!}
-    {!! Form::text('key', null, ['class' => 'form-control text-uppercase', 'required', 'id' => 'input', 'placeholder' => 'Código do produto', 'autofocus']) !!}
+<div class="panel panel-success">
+    {!! Form::open(['route' => 'produto.search', 'method' => 'POST', 'id' => 'search_produto']) !!}
+    {!! Form::text('key', null, ['class' => 'form-control text-uppercase', 'required', 'id' => 'input_produto', 'placeholder' => 'Código do produto', 'autofocus']) !!}
     {!! Form::close() !!}
 </div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        {!! Form::open(['method' => 'PATCH', 'route' => ['pedido.update', $pedido->id]]) !!}
-        <div id="list_produto" class="list-group"><!-- Carrega aqui os dados de pesquisa do produto --></div>
+        {!! Form::open(['id' => 'insert_produto', 'method' => 'PATCH', 'route' => ['pedido.update', $pedido->id]]) !!}
+        <div id="list_produto" class="list-group produto"><!--Carrega aqui os dados de pesquisa do produto--></div>
     </div>
     <div class="col-sm-2">
         {!! Form::text('quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}

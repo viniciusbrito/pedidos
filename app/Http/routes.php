@@ -28,7 +28,7 @@ Route::resource('produto', 'ProdutoController');
 Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoController@search']);
 
 Route::resource('revendedor', 'RevendedoraController');
-Route::post('revendedor/{key}', 'RevendedoraController@search');
+Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 
 Route::resource('pedido', 'PedidoController');
 

@@ -9,7 +9,7 @@ class Revendedora extends Model {
 
     protected $fillable = ['nome', 'telefone'];
 
-    protected $hidden = ['id', 'created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
