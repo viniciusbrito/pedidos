@@ -81,7 +81,7 @@
             </thead>
             <tr>
                 <td>
-                    <a href="#" class="btn btn-primary">Salvar</a>
+                    <a href="{{ url('pedido') }}" class="btn btn-primary">Salvar</a>
                 </td>
                 <td>
                     <a href="#" class="btn btn-success">Finalizar</a>

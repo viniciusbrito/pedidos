@@ -29,7 +29,7 @@ class ProdutoController extends Controller {
         {
             //return redirect('/produto');
         }
-        $produtos = Produto::orderBy('nome')->paginate(10);
+        $produtos = Produto::orderBy('nome')->paginate(5);
         return view('produto.all')->with('produtos', $produtos);
     }
 
@@ -62,7 +62,10 @@ class ProdutoController extends Controller {
     public function store(CreateProdutoRequest $request)
     {
         Produto::create($request->all());
-        return redirect('produto');
+        return redirect('produto')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Produto cadastrado com sucesso!'
+        ]);
 
     }
 
@@ -95,7 +98,10 @@ class ProdutoController extends Controller {
 
         $produto->update($request->all());
 
-        return redirect('produto');
+        return redirect('produto')->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Produto atualizado com sucesso!'
+        ]);;
 
     }
 
@@ -114,7 +120,7 @@ class ProdutoController extends Controller {
     {
         $key = $request->key;
 
-        $produto = Produto::where('codigo', 'like', '%'.$key.'%')->get()->toJSon();
+        $produto = Produto::where('codigo', 'like', '%'.$key.'%')->take(5)->get()->toJSon();
 
         return $produto;
     }
