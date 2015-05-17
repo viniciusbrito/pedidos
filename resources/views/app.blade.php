@@ -65,8 +65,8 @@
         @else
             <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
-                    <li><a href="{{ url('/auth/register') }}">Register</a></li>
+                    <li><a href="{{ url('/auth/login') }}">Entrar</a></li>
+                    <li><a href="{{ url('/auth/register') }}">Cadastrar-se</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         @endif
