@@ -55,7 +55,7 @@
                                         <td><strong>Status do Pedido</strong></td>
                                         <td><strong>Visualizar</strong></td>
                                     </thead>
-                                    @foreach($revendedor->pedidos as $pedido)
+                                    @foreach($revendedor->pedidos()->orderBy('updated_at', 'desc')->get() as $pedido)
                                         <tr>
                                             <td>
                                                {{ $pedido->updated_at->format("d/m/Y H:i:s") }}

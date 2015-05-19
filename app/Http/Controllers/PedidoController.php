@@ -59,7 +59,7 @@ class PedidoController extends Controller
 
         $revendedor = Revendedora::find($id['revendedor_id']);
 
-        $pedido = $revendedor->pedidos()->create($id);
+        $pedido = $revendedor->pedidos()->create(['revendedora_id' => $id,'status_id' => 1]);
 
         return redirect('pedido/' . $pedido->id . '/edit');
     }
@@ -92,6 +92,10 @@ class PedidoController extends Controller
         //dd($pedido->produto);
 
         if (is_null($pedido))
+            return view('errors.503');
+
+        //Pedido finalizado não pode ser editado
+        if($pedido->status_id == 2)
             return view('errors.503');
 
         return view('pedido.edit')->with('pedido', $pedido);
@@ -153,6 +157,23 @@ class PedidoController extends Controller
         return redirect('pedido/')->with([
             'flash_type_message' => 'alert-success',
             'flash_message' => 'Pedido removido com sucesso!'
+        ]);
+    }
+
+    public function close(Request $request)
+    {
+        $id = $request['id'];
+        $pedido = Pedido::find($id);
+
+        if (is_null($pedido))
+            return view('errors.503');
+
+        $pedido->status_id = 2;
+        $pedido->updated_at = Carbon::now();
+        $pedido->save();
+        return redirect('pedido/'.$id)->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Pedido finalizado com sucesso!'
         ]);
     }
 }

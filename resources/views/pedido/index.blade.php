@@ -8,32 +8,50 @@
             <table class="table table-striped table-responsive">
                 <thead>
                 <td><strong>Nome</strong></td>
+                <td><strong>Situação</strong></td>
                 <td><strong>Ultima modificação</strong> <span class="caret"></span></td>
                 <td><strong>Data do Pedido</strong></td>
-                <td colspan="3"></td>
+                <td colspan="4"></td>
                 </thead>
                 @foreach($pedidos as $pedido)
                     <tr>
                         <td>
                             {{ $pedido->revendedora->nome }}
                         </td>
+
+                        <td>
+                            {{ $pedido->status->status }}
+                        </td>
+
                         <td>
                             {{ $pedido->updated_at->format('d/m/Y H:i:s') }}
                         </td>
+
                         <td>
                             {{ $pedido->created_at->format('d/m/Y H:i:s') }}
                         </td>
-                        <td  class="text-center"><a href="{{ url('/pedido', $pedido->id) }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a></td>
-                        <td class="text-center"><a href="{{ url('/pedido', $pedido->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
+
+                        <td  class="text-center">
+                            <a href="{{ url('/pedido', $pedido->id) }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a>
+                        </td>
+
                         <td class="text-center">
-                            {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}
-                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
-                            {!! Form::close() !!}
+                            @if($pedido->status_id == 1)
+                                <a href="{{ url('/pedido', $pedido->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+                            @endif
+                        </td>
+
+                        <td class="text-center">
+                            @if($pedido->status_id == 1)
+                                {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}
+                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                {!! Form::close() !!}
+                            @endif
                         </td>
                     </tr>
                 @endforeach
                 <tr>
-                    <td colspan="5" class="text-center">{!! $pedidos->render() !!}</td>
+                    <td colspan="7" class="text-center">{!! $pedidos->render() !!}</td>
                 </tr>
             </table>
         </div>

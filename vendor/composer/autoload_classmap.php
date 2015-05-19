@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
+    'CreatePedidoStatusesTable' => $baseDir . '/database/migrations/2015_05_08_210101_create_pedido_statuses_table.php',
     'CreatePedidosTable' => $baseDir . '/database/migrations/2015_05_08_210201_create_pedidos_table.php',
     'CreateProdutosTable' => $baseDir . '/database/migrations/2015_05_08_201709_create_produtos_table.php',
     'CreateRevendedorasTable' => $baseDir . '/database/migrations/2015_05_07_124707_create_revendedoras_table.php',
@@ -389,6 +390,8 @@ return array(
     'PHP_Token_WHITESPACE' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'PedidoStatusSeeder' => $baseDir . '/database/seeds/PedidoStatusesSeeder.php',
+    'ProdutosSeeder' => $baseDir . '/database/seeds/ProdutosSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',

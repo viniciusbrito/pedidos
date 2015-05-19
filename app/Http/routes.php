@@ -23,6 +23,7 @@ Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'Reven
 
 Route::resource('pedido', 'PedidoController');
 Route::post('pedido/{pedido}', ['as' => 'pedido.remove', 'uses' => 'PedidoController@remove']);
+Route::put('pedido', ['as' => 'pedido.close', 'uses' => 'PedidoController@close']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -16,6 +16,7 @@ class CreatePedidosTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('revendedora_id')->unsigned();
+            $table->integer('status_id')->unsigned();
 			$table->timestamps();
             $table->softDeletes();
 
@@ -23,6 +24,11 @@ class CreatePedidosTable extends Migration {
             $table->foreign('revendedora_id')
                 ->references('id')
                 ->on('revendedoras')
+                ->onDelete('restrict');
+
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('pedido_statuses')
                 ->onDelete('restrict');
         });
 
@@ -52,8 +58,8 @@ class CreatePedidosTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pedidos');
         Schema::drop('pedido_produto');
+        Schema::drop('pedidos');
 	}
 
 }

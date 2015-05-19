@@ -29,7 +29,14 @@
                     <strong>Modificado em:</strong> {{ $pedido->updated_at->format('d/m/Y h:i:s') }}
                 </div>
                 <div class="col-sm-6">
-                    <strong>Quantidade produtos:</strong> {{ count($pedido->produto) }} itens <br>
+                    <strong>Quantidade produtos:</strong> {{ count($pedido->produto) }} itens
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <strong>Situação do pedido:</strong> {{ $pedido->status->status }}
+                </div>
+                <div class="col-sm-6">
                     <strong>Quantidade total:</strong> {{ $pedido->itens() }} produtos
                 </div>
             </div>

@@ -14,7 +14,7 @@
         <div id="list_produto" class="list-group produto"><!--Carrega aqui os dados de pesquisa do produto--></div>
     </div>
     <div class="col-sm-2">
-        {!! Form::text('quantidade', null, ['class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
+        {!! Form::text('quantidade', null, ['id' => 'quantidade', 'class' => 'form-control', 'placeholder' => 'Quantidade', 'required']) !!}
     </div>
     <div class="col-sm-5">
         {!! Form::hidden('produto_id', null, ['id' => 'produto_id']) !!}
@@ -84,7 +84,10 @@
                     <a href="{{ url('pedido') }}" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Salvar</a>
                 </td>
                 <td>
-                    <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Finalizar</a>
+                    {!! Form::open(['method' => 'PUT', 'route' => 'pedido.close']) !!}
+                    {!! Form::hidden('id', $pedido->id) !!}
+                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Finalizar</button>
+                    {!! Form::close() !!}
                 </td>
                 <td>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}

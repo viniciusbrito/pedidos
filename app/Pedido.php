@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pedido extends Model {
 
 	use SoftDeletes;
-    protected $fillable = ['revendedora_id'];
+    protected $fillable = ['revendedora_id', 'status_id'];
     protected $dates = ['created_at', 'updated_at'];
 
     /**
@@ -23,6 +23,11 @@ class Pedido extends Model {
     public function produto()
     {
         return $this->belongsToMany('App\Produto')->withPivot('quantidade');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo('App\PedidoStatus');
     }
 
 
