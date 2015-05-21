@@ -45,25 +45,25 @@ class PedidoController extends Controller
                 case 'nome':
                     $pedidos = Pedido::join('revendedoras', 'revendedoras.id', '=', 'pedidos.revendedora_id')
                         ->orderBy('revendedoras.nome', $direc)
-                        ->paginate(5);
+                        ->paginate(5)->appends( Input::query());
                     break;
 
                 case 'create':
-                    $pedidos = Pedido::orderBy('created_at', $direc)->paginate(5);
+                    $pedidos = Pedido::orderBy('created_at', $direc)->paginate(5)->appends(Input::query());
                     break;
 
                 case 'update':
-                    $pedidos = Pedido::orderBy('updated_at', $direc)->paginate(5);
+                    $pedidos = Pedido::orderBy('updated_at', $direc)->paginate(5)->appends(Input::query());
                     break;
 
                 case 'status':
-                    $pedidos = Pedido::orderBy('status_id', $direc)->paginate(5);
+                    $pedidos = Pedido::orderBy('status_id', $direc)->paginate(5)->appends(Input::query());
                     break;
             }
         }
         else
         {
-            $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5);
+            $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5)->appends(Input::query());
         }
 
         return view('pedido.index')->with(['pedidos' => $pedidos]);

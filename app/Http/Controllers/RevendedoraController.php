@@ -130,7 +130,7 @@ class RevendedoraController extends Controller {
     {
         $key = $request->key;
 
-        $revendedor  = Revendedora::where('nome', 'like', '%'.$key.'%')->get()->toJson();
+        $revendedor  = Revendedora::where('nome', 'like', '%'.$key.'%')->orderBy('nome')->get()->toJson();
 
         return $revendedor;
     }

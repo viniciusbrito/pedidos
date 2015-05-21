@@ -7,34 +7,30 @@
 
             <table class="table table-striped table-responsive">
                 <thead>
-                <td><strong>ID</strong></td>
                 <td>
                     <strong>Nome</strong>
-                    <a href="{{ url('/pedido?order=nome&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido?order=nome&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('/pedido/?order=nome&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('/pedido/?order=nome&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Situação</strong>
-                    <a href="{{ url('/pedido?order=status&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido?order=status&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('/pedido/?order=status&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('/pedido/?order=status&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Ultima modificação</strong>
-                    <a href="{{ url('/pedido?order=update&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido?order=update&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('/pedido/?order=update&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('/pedido/?order=update&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Data do Pedido</strong>
-                    <a href="{{ url('/pedido?order=create&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido?order=create&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('/pedido/?order=create&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('/pedido/?order=create&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td colspan="4"></td>
                 </thead>
                 @foreach($pedidos as $pedido)
                     <tr>
-                        <td>
-                            {{ $pedido->id }}
-                        </td>
                         <td>
                             {{ $pedido->revendedora->nome }}
                         </td>

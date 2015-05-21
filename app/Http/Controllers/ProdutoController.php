@@ -123,6 +123,10 @@ class ProdutoController extends Controller {
         ]);;
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function search(Request $request)
     {
         $key = $request->key;
