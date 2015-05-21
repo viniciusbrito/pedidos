@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\PedidoAddProdutoRequest;
 use App\Http\Requests\CreatePedidoRequest;
+use Illuminate\Support\Facades\Input;
 
 class PedidoController extends Controller
 {
@@ -31,9 +32,41 @@ class PedidoController extends Controller
      */
     public function index()
     {
-        $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5);
+        if(Input::get('order'))
+        {
+            if(Input::get('direc'))
+                $direc = Input::get('direc');
+            else
+                $direc = 'asc';
 
-        return view('pedido.index', compact('pedidos', $pedidos));
+            $order = Input::get('order');
+            switch($order)
+            {
+                case 'nome':
+                    $pedidos = Pedido::join('revendedoras', 'revendedoras.id', '=', 'pedidos.revendedora_id')
+                        ->orderBy('revendedoras.nome', $direc)
+                        ->paginate(5);
+                    break;
+
+                case 'create':
+                    $pedidos = Pedido::orderBy('created_at', $direc)->paginate(5);
+                    break;
+
+                case 'update':
+                    $pedidos = Pedido::orderBy('updated_at', $direc)->paginate(5);
+                    break;
+
+                case 'status':
+                    $pedidos = Pedido::orderBy('status_id', $direc)->paginate(5);
+                    break;
+            }
+        }
+        else
+        {
+            $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5);
+        }
+
+        return view('pedido.index')->with(['pedidos' => $pedidos]);
     }
 
     /**
