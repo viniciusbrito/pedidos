@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Pedido extends Model {
 
 	use SoftDeletes;
-    protected $fillable = ['revendedora_id', 'status_id'];
+    protected $fillable = ['revendedora_id', 'status_id', 'campanha_id'];
     protected $dates = ['created_at', 'updated_at'];
 
     /**
@@ -30,6 +30,10 @@ class Pedido extends Model {
         return $this->belongsTo('App\PedidoStatus');
     }
 
+    public function campanha()
+    {
+        return $this->belongsTo('App\Campanha');
+    }
 
     /**
      * Retorna o valor total do pedido
@@ -43,7 +47,7 @@ class Pedido extends Model {
         {
             $soma += ($produto->preco * $produto->quantidade());
         }
-        return $soma;
+        return number_format($soma, 2);
     }
 
     /**

@@ -81,7 +81,7 @@
             </thead>
             <tr>
                 <td>
-                    <a href="{{ url('pedido') }}" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Salvar</a>
+                    <a href="{{ url('campanha/'.$pedido->campanha->id.'/pedidos') }}" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Salvar</a>
                 </td>
                 <td>
                     {!! Form::open(['method' => 'PUT', 'route' => 'pedido.close']) !!}

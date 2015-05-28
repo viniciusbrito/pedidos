@@ -9,23 +9,28 @@
                 <thead>
                 <td>
                     <strong>Nome</strong>
-                    <a href="{{ url('/pedido/?order=nome&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido/?order=nome&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=nome&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=nome&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Situação</strong>
-                    <a href="{{ url('/pedido/?order=status&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido/?order=status&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=status&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=status&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                </td>
+                <td>
+                    <strong>Campanha</strong>
+                    <a href="{{ url('campanha/pedido/?order=campanha&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=campanha&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Ultima modificação</strong>
-                    <a href="{{ url('/pedido/?order=update&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido/?order=update&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=update&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=update&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td>
                     <strong>Data do Pedido</strong>
-                    <a href="{{ url('/pedido/?order=create&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
-                    <a href="{{ url('/pedido/?order=create&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=create&direc=asc') }}"><span class="glyphicon glyphicon-sort-by-attributes"></span></a>
+                    <a href="{{ url('campanha/pedido/?order=create&direc=desc') }}"><span class="glyphicon glyphicon-sort-by-attributes-alt"></span></a>
                 </td>
                 <td colspan="4"></td>
                 </thead>
@@ -40,6 +45,10 @@
                         </td>
 
                         <td>
+                            Campanha {{ $pedido->campanha->created_at->format('M') }} / {{ $pedido->campanha->id }}
+                        </td>
+
+                        <td>
                             {{ $pedido->updated_at->format('d/m/Y H:i:s') }}
                         </td>
 
@@ -48,12 +57,12 @@
                         </td>
 
                         <td  class="text-center">
-                            <a href="{{ url('/pedido', $pedido->id) }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a>
+                            <a href="{{ url('campanha/pedido', $pedido->id) }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a>
                         </td>
 
                         <td class="text-center">
                             @if($pedido->status_id == 1)
-                                <a href="{{ url('/pedido', $pedido->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="{{ url('campanha/pedido', $pedido->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a>
                             @endif
                         </td>
 

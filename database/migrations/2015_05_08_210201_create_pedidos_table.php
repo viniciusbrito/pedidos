@@ -17,6 +17,7 @@ class CreatePedidosTable extends Migration {
 			$table->increments('id');
             $table->integer('revendedora_id')->unsigned();
             $table->integer('status_id')->unsigned();
+            $table->integer('campanha_id')->unsigned();
 			$table->timestamps();
             $table->softDeletes();
 
@@ -29,6 +30,11 @@ class CreatePedidosTable extends Migration {
             $table->foreign('status_id')
                 ->references('id')
                 ->on('pedido_statuses')
+                ->onDelete('restrict');
+
+            $table->foreign('campanha_id')
+                ->references('id')
+                ->on('campanhas')
                 ->onDelete('restrict');
         });
 

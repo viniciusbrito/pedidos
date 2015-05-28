@@ -14,7 +14,7 @@
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="container-fluid">
+    <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-ex1-collapse" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
@@ -44,10 +44,10 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Campanhas <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('pedido') }}">Consultar</a></li>
-                            <li><a href="{{ url('pedido/create') }}">Criar</a></li>
+                            <li><a href="{{ url('campanha') }}">Consultar</a></li>
+                            <!--<li><a href="{{ url('pedido/create') }}">Criar</a></li>-->
                         </ul>
                     </li>
                 </ul>

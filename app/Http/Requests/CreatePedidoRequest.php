@@ -22,7 +22,8 @@ class CreatePedidoRequest extends Request {
 	public function rules()
 	{
 		return [
-			'revendedor_id' => 'required|min:1'
+			'revendedor_id' => 'required|min:1',
+            'campanha_id' => 'required|min:1'
 		];
 	}
 

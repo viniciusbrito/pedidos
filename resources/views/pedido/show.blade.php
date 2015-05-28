@@ -7,7 +7,7 @@
             </legend>
         </div>
         <div class="col-sm-1">
-            <a href="{{ url('pedido') }}" class="btn btn-default">Voltar</a>
+            <a href="{{ route('campanha.pedidos', $pedido->campanha->id) }}" class="btn btn-default">Voltar</a>
         </div>
     </div>
 
