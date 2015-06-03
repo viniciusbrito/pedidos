@@ -5,12 +5,18 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\PDF;
 
 class CampanhaController extends Controller {
 
 
+    /**
+     *
+     */
     function __construct()
     {
         $this->middleware('auth');
@@ -38,7 +44,11 @@ class CampanhaController extends Controller {
         return redirect('campanha/'.$campanha->id.'/pedido/create');
 	}
 
-	public function pedidos($id)
+    /**
+     * @param $id
+     * @return $this|\Illuminate\View\View
+     */
+    public function pedidos($id)
     {
         $campanha = Campanha::find($id);
 
@@ -79,10 +89,13 @@ class CampanhaController extends Controller {
         {
             $pedidos = $campanha->pedidos()->orderBy('updated_at', 'desc')->paginate(5)->appends(Input::query());
         }
-
         return view('campanha.pedidos')->with(['pedidos' => $pedidos, 'campanha' => $campanha]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|void
+     */
     public function update($id)
     {
         $campanha = Campanha::find($id);
@@ -114,6 +127,24 @@ class CampanhaController extends Controller {
                     'flash_type_message' => 'alert-success'
                 ]);
         }
+    }
+
+    /**
+     * @param $id
+     * @return $this|void
+     */
+    public function pdf($id)
+    {
+        $campanha = Campanha::find($id);
+
+        if(is_null($campanha))
+            return abort(503);
+
+        //return view('pedido.pdf')->with('campanha',$campanha);
+        $pdf = App::make('dompdf');
+        $pdf->loadView('pedido.pdf', ['campanha' => $campanha]);
+
+        return $pdf->stream();
     }
 
 }

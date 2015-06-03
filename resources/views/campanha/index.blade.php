@@ -50,7 +50,7 @@
                                 </tr>
                             @endforeach
                             <tr>
-                                <td colspan="4" class="text-center">{!! $campanhas->render() !!}</td>
+                                <td colspan="5" class="text-center">{!! $campanhas->render() !!}</td>
                             </tr>
                         </tbody>
                     </table>

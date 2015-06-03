@@ -36,6 +36,8 @@ Route::group(['prefix' => 'campanha', 'namespace' => 'Campanha'], function() {
 
     Route::patch('/{id}', ['as' => 'campanha.update', 'uses' => 'CampanhaController@update' ]);
 
+    Route::get('/{id}/pdf', ['as' => 'campanha.pdf', 'uses' => 'CampanhaController@pdf']);
+
     /* Rotas para pedido */
 
     //Route::get('/pedido/{order?}{direc?}', ['as' => 'pedido.index', 'uses' => 'PedidoController@index']);
@@ -56,7 +58,6 @@ Route::group(['prefix' => 'campanha', 'namespace' => 'Campanha'], function() {
 
     Route::put('/pedido/', ['as' => 'pedido.close', 'uses' => 'PedidoController@close']);
 
-    Route::get('/pedido/{pedido}/pdf', ['as' => 'pedido.pdf', 'uses' => 'PedidoController@pdf']);
 });
 
 Route::controllers([

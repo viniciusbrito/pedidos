@@ -13,9 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PedidoAddProdutoRequest;
 use App\Http\Requests\CreatePedidoRequest;
 use Illuminate\Support\Facades\Input;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Session;
 
 class PedidoController extends Controller
 {
@@ -227,6 +225,12 @@ class PedidoController extends Controller
 
         if (is_null($pedido))
             return view('errors.503');
+
+        if($pedido->itens() == 0)
+            return redirect('campanha/pedido/'.$id.'/edit')->with([
+                'flash_type_message' => 'alert-danger',
+                'flash_message' => 'Pedido vazio não pode ser finalizado!'
+            ]);
 
         $pedido->status_id = 2;
         $pedido->updated_at = Carbon::now();
