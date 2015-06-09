@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/', 'HomeController@index');
 
 Route::get('home', 'HomeController@index');
 
@@ -37,6 +37,8 @@ Route::group(['prefix' => 'campanha', 'namespace' => 'Campanha'], function() {
     Route::patch('/{id}', ['as' => 'campanha.update', 'uses' => 'CampanhaController@update' ]);
 
     Route::get('/{id}/pdf', ['as' => 'campanha.pdf', 'uses' => 'CampanhaController@pdf']);
+
+    Route::post('/{id}/send', ['as' => 'campanha.send', 'uses' => 'CampanhaController@send']);
 
     /* Rotas para pedido */
 

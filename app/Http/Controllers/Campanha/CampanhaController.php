@@ -4,12 +4,13 @@ use App\Campanha;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\App;
-use Barryvdh\DomPDF\PDF;
+
+use App\Http\Requests\SendCampanhaRequest;
 
 class CampanhaController extends Controller {
 
@@ -130,21 +131,45 @@ class CampanhaController extends Controller {
     }
 
     /**
+     * Send to email a file pdf with all Pedidos
      * @param $id
-     * @return $this|void
+     * @param SendCampanhaRequest $request
+     * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function pdf($id)
+    public function send($id, SendCampanhaRequest $request)
     {
         $campanha = Campanha::find($id);
 
         if(is_null($campanha))
-            return abort(503);
+            return abort(504);
 
-        //return view('pedido.pdf')->with('campanha',$campanha);
+        /* Cria o arquivo pdf em storage/campanha/file_name */
+
+        $fileName = str_random(15).'_Campanha_'.$campanha->created_at->format('M').'.pdf';
+        $path = storage_path().'/campanhas/'.$fileName;
         $pdf = App::make('dompdf');
         $pdf->loadView('pedido.pdf', ['campanha' => $campanha]);
+        $pdf->save($path);
 
-        return $pdf->stream();
+        /* Envia o e-mail */
+        $dados['email'] = $request->email;
+        $dados['path'] = $path;
+        Mail::raw('Segue em anexo os pedidos', function($message) use ($dados)
+        {
+            $message->to($dados['email'])->cc('luciafernandesoliveira@hotmail.com');
+
+            $message->subject("Pedidos " . Carbon::now()->format('d/m/Y'));
+
+            $message->attach($dados['path']);
+        });
+
+        $campanha->sent = true;
+        $campanha->save();
+
+        return redirect(route('campanha.pedidos', $id))->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Email enviado com sucesso!'
+        ]);
     }
 
 }

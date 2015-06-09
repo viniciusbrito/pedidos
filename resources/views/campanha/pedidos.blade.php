@@ -1,5 +1,6 @@
 @extends('app')
 @section('content')
+    @include('errors.list')
     <div class="row">
         <div class="col-sm-11">
             <legend>
@@ -43,7 +44,7 @@
                             <strong>Criado em:</strong> {{ $campanha->created_at->format('d/m/Y H:i:s') }}
                         </div>
                         <div class="col-sm-4">
-                            <strong></strong>
+                            <strong>{{ ($campanha->sent)? 'Pedido enviado' : 'Pedido não enviado' }}</strong>
                         </div>
                     </div>
                     <div class="row">
@@ -56,7 +57,7 @@
                         <div class="col-sm-4">
                             @if(!$campanha->status)
                                 {!! Form::open(['method' => 'PATCH', 'route' => ['campanha.update', $campanha->id]]) !!}
-                                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-check"></span> Finalizar Campanha</button>
+                                <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-check"></span> Finalizar Campanha</button>
                                 {!! Form::close() !!}
                             @endif
                         </div>
@@ -75,7 +76,7 @@
     @else
         <div class="row">
             <div class="col-sm-12">
-                <a href="{{ route('campanha.pdf', $campanha->id) }}" class="btn btn-success"><span class="glyphicon glyphicon-send"></span> Enviar</a>
+                @include('campanha.send', ['pedido_id' => $campanha->id])
             </div>
         </div>
     @endif

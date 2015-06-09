@@ -250,6 +250,7 @@ class PedidoController extends Controller
 
         $pdf = App::make('dompdf');
         $pdf->loadView('pedido.pdf', ['pedido' => $pedido]);
-        return $pdf->stream();
+        return $pdf->save(storage_path().'/pedido.pdf')
+            ->stream('pedido.pdf');
     }
 }

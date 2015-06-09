@@ -1,7 +1,5 @@
 @foreach($campanha->pedidos as $pedido)
 
-
-
     <?php $i = 0 ?>
     <table width="500" cellspacing="10" border="0.1" style="text-align: center; font-size: 14pt;">
         <thead>
@@ -12,8 +10,8 @@
             </td>
         </tr>
         <tr>
-            <td width="90"><strong>Código</strong></td>
             <td width="30"><strong>Qt</strong></td>
+            <td width="90"><strong>Código</strong></td>
             <td><strong>Item</strong></td>
         </tr>
         </thead>
@@ -26,10 +24,10 @@
             @endif
 
                 <td>
-                    {{ $produto->codigo }}
+                    {{ $produto->quantidade() }}
                 </td>
                 <td>
-                    {{ $produto->quantidade() }}
+                    {{ $produto->codigo }}
                 </td>
                 <td>
                     {{ $produto->nome }}
@@ -39,5 +37,5 @@
         @endforeach
         </tbody>
     </table>
-    <div style="page-break-before: always"></div>
+   <!-- <div style="page-break-before: always"></div> -->
 @endforeach

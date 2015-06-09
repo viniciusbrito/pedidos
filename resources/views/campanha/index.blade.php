@@ -40,6 +40,7 @@
                                     </td>
                                     <td>
                                         {{ $campanha->status() }}
+                                        {{ ($campanha->sent)? ' e enviado' : '' }}
                                     </td>
                                     <td>
                                         {{ $campanha->total('all') }}
