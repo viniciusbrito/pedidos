@@ -106,13 +106,24 @@ class CampanhaController extends Controller {
 
         $pedidos = $campanha->pedidos()->orderBy('updated_at', 'desc')->paginate(5)->appends(Input::query());
 
+        if($campanha->total('all') == 0)
+        {
+            return redirect(route('campanha.pedidos', $campanha->id))
+                ->with([
+                    'pedidos' => $pedidos,
+                    'campanha' => $campanha,
+                    'flash_message' => 'Não há pedidos cadastrados! Campanha não pode ser finalizada!',
+                    'flash_type_message' => 'alert-danger'
+                ]);
+        }
+
         if($campanha->verificar() == false)
         {
             return redirect(route('campanha.pedidos', $campanha->id))
                 ->with([
                     'pedidos' => $pedidos,
                     'campanha' => $campanha,
-                    'flash_message' => 'Pedido não pode ser finalizado! Ainda há pedidos em escrita!',
+                    'flash_message' => 'Ainda há pedidos em escrita! Campanha não pode ser finalizada!',
                     'flash_type_message' => 'alert-danger'
                 ]);
         }
@@ -124,7 +135,7 @@ class CampanhaController extends Controller {
                 ->with([
                     'pedidos' => $pedidos,
                     'campanha' => $campanha,
-                    'flash_message' => 'Pedido Finalizado com sucesso!',
+                    'flash_message' => 'Campanha Finalizado com sucesso!',
                     'flash_type_message' => 'alert-success'
                 ]);
         }

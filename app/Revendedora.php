@@ -7,7 +7,21 @@ class Revendedora extends Model {
 
 	use SoftDeletes;
 
-    protected $fillable = ['nome', 'telefone'];
+    protected $fillable = [
+        'codigo',
+        'nome',
+        'cpf',
+        'rg',
+        'nascimento',
+        'telefone',
+        'telefone2',
+        'telefone3',
+        'endereco',
+        'bairro',
+        'cep',
+        'cidade',
+        'uf'
+    ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];
 

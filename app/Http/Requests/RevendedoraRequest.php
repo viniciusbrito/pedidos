@@ -23,7 +23,15 @@ class RevendedoraRequest extends Request {
 	{
 		return [
 			'nome' => 'required|min:3',
-            'telefone' => 'required'
+            'cpf' => 'required|unique:revendedoras',
+            'rg' => 'required',
+            'nascimento',
+            'telefone' => 'required',
+            'endereco' => 'required',
+            'bairro' => 'required',
+            'cep' => 'required',
+            'cidade' => 'required',
+            'uf' => 'required|min:2'
 		];
 	}
 

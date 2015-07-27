@@ -13,4 +13,6 @@ var elixir = require('laravel-elixir');
 
 elixir(function(mix) {
     mix.less('app.less');
+
+    mix.copy('resources/assets/js/mask.js', 'public/assets/js/mask.js');
 });
