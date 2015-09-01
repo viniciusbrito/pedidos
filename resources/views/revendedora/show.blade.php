@@ -1,6 +1,8 @@
 @extends('app')
 @section('content')
 
+    @include('partials.remover')
+
     <div class="row">
         <div class="col-sm-11">
             <legend>
@@ -76,7 +78,11 @@
             <a href="{{ url('/revendedor', $revendedor->id) }}/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span> Editar</a>
         </div>
         <div class="col-sm-1">
-            <a href="{{ url('/revendedor', $revendedor->id) }}/remover" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Remover</a>
+            {!! Form::open(['method' => 'DELETE', 'route' => ['revendedor.destroy', $revendedor->id]]) !!}
+            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#removerModal" data-title="Remover Revendedor(a)" data-message="Você tem certeza que quer remover?">
+                <span class="glyphicon glyphicon-trash"></span> Remover
+            </button>
+            {!! Form::close() !!}
         </div>
     </div>
     <br/>

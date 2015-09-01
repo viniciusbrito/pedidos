@@ -1,6 +1,7 @@
 @extends('app')
 
 @section('content')
+    @include('partials.remover')
     <legend><span class="glyphicon glyphicon-saved"></span> Pedidos Cadastrados</legend>
     @if(count($pedidos))
         <div class="panel panel-default">
@@ -69,7 +70,9 @@
                         <td class="text-center">
                             @if($pedido->status_id == 1)
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}
-                                <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                                <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#removerModal" data-title="Remover Pedido" data-message="Você tem certeza que quer remover este pedido?">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
                                 {!! Form::close() !!}
                             @endif
                         </td>

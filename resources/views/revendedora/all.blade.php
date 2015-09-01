@@ -1,6 +1,6 @@
 @extends('app')
-
 @section('content')
+    @include('partials.remover')
     <legend><span class="glyphicon glyphicon-saved"></span> Revendedores Cadastrados</legend>
 
     @if(count($revendedores))
@@ -28,7 +28,9 @@
                         <td class="text-center"><a href="{{ url('/revendedor', $revendedor->id) }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
                         <td class="text-center">
                             {!! Form::open(['method' => 'DELETE', 'route' => ['revendedor.destroy', $revendedor->id]]) !!}
-                            <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                            <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#removerModal" data-title="Remover Revendedor(a)" data-message="Você tem certeza que quer remover?">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
                             {!! Form::close() !!}
                         </td>
                     </tr>

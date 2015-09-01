@@ -1,5 +1,6 @@
 @extends('app')
 @section('content')
+@include('partials.remover')
 @include('errors.list')
 <legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong> {{ $pedido->revendedora->nome }}</legend>
 
@@ -71,14 +72,17 @@
     @endif
 </div>
 <div class="panel panel-info">
-    <div class="panel panel-heading"><h3 class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Informações do pedido</h3></div>
-    <div class="panel-body">
-        <table class="table table-striped table-responsive">
-            <thead>
-                <td ><strong>Número de Itens:</strong> <label style="color: blue">{{ $pedido->itens() }} itens </label></td>
-                <td><strong>Total:</strong> <label style="color: blue">R$ {{ $pedido->total() }}</label></td>
-                <td></td>
-            </thead>
+    <div class="panel panel-heading"><h3 class="panel-title">
+            <span class="glyphicon glyphicon-info-sign"></span> Informações do pedido</h3>
+    </div>
+    <table class="table table-striped table-responsive">
+        <thead>
+            <tr>
+                <td><strong>Número de Itens:</strong> <label style="color: blue">{{ $pedido->itens() }} itens </label></td>
+                <td colspan="2"><strong>Total:</strong> <label style="color: blue">R$ {{ $pedido->total() }}</label></td>
+            </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td>
                     <a href="{{ url('campanha/'.$pedido->campanha->id.'/pedidos') }}" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Salvar</a>
@@ -91,12 +95,14 @@
                 </td>
                 <td>
                     {!! Form::open(['method' => 'DELETE', 'route' => ['pedido.destroy', $pedido->id]]) !!}
-                    <button type="submit" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Excluir</button>
+                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#removerModal" data-title="Remover Pedido" data-message="Você tem certeza que quer remover este pedido?">
+                        <span class="glyphicon glyphicon-trash"></span> Exlcuir
+                    </button>
                     {!! Form::close() !!}
                 </td>
             </tr>
-        </table>
-    </div>
+        </tbody>
+    </table>
 </div>
 
 @endsection
