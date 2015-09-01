@@ -20,11 +20,52 @@
                     <p class="panel-title"><span class="glyphicon glyphicon-info-sign"></span> Informações Pessoais</p>
                 </div>
                 <div class="panel-body">
+
                     <div class="row">
-                        <div class="coll-md-3">
-                            <label>Telefone:</label> {{ $revendedor->telefone }}
+                        <div class="col-md-3">
+                            <label>Código:</label> {{ $revendedor->codigo }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>CPF:</label> {{ $revendedor->cpf }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>RG:</label> {{ $revendedor->rg }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Nascimeto:</label> {{ $revendedor->nascimento->format('d/m/Y') }}
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Telefone:</label> {{ $revendedor->telefone }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Telefone:</label> {{ $revendedor->telefone2 }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Telefone:</label> {{ $revendedor->telefone3 }}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label>Endereço:</label> {{ $revendedor->endereco }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>Bairro:</label> {{ $revendedor->bairro }}
+                        </div>
+                        <div class="col-md-3">
+                            <label>CEP:</label> {{ $revendedor->cep }}
+                        </div>
+                        <div class="col-md-2">
+                            <label>Cidade:</label> {{ $revendedor->cidade }}
+                        </div>
+                        <div class="col-md-1">
+                            <label>UF:</label> {{ $revendedor->uf }}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

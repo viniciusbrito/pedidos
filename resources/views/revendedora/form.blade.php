@@ -31,7 +31,7 @@
     <div class="col-md-4">
         <div class="form-group">
             {!! Form::label('nascimento', 'Nascimento') !!}
-            {!! Form::input('date', 'nascimento', null, ['class' => 'form-control']) !!}
+            {!! Form::input('date', 'nascimento', $date, ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>

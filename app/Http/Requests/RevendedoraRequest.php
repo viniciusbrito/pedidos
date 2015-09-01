@@ -22,7 +22,8 @@ class RevendedoraRequest extends Request {
 	public function rules()
 	{
 		return [
-			'nome' => 'required|min:3',
+            'codigo' => 'required|unique:revendedoras',
+            'nome' => 'required|min:3',
             'cpf' => 'required|unique:revendedoras',
             'rg' => 'required',
             'nascimento',

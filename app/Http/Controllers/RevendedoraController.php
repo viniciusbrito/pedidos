@@ -22,7 +22,7 @@ class RevendedoraController extends Controller {
 	 */
 	public function index()
 	{
-        return view('revendedora.all')->with('revendedores', Revendedora::orderBy('nome')->paginate(5));
+        return view('revendedora.all')->with('revendedores', Revendedora::orderBy('nome')->paginate(10));
 	}
 
 	/**
@@ -42,11 +42,11 @@ class RevendedoraController extends Controller {
 	 */
 	public function store(RevendedoraRequest $request)
 	{
-		Revendedora::create($request->all());
+        $rev = Revendedora::create($request->all());
 
-        return redirect('revendedor')->with([
+        return redirect(route('revendedor.show', $rev->id))->with([
             'flash_type_message' => 'alert-success',
-            'flash_message' => 'Usuário cadastrado com sucesso!'
+            'flash_message' => 'Revendedor cadastrado com sucesso!'
         ]);
 	}
 
@@ -58,10 +58,7 @@ class RevendedoraController extends Controller {
 	 */
 	public function show($id)
 	{
-		$revendedor = Revendedora::find($id);
-
-        if(is_null($revendedor))
-            return view('errors.503');
+		$revendedor = Revendedora::findOrFail($id);
 
         return view('revendedora.show')->with('revendedor', $revendedor);
 	}
@@ -74,10 +71,7 @@ class RevendedoraController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $revendedor = Revendedora::find($id);
-
-        if(is_null($revendedor))
-            return view('errors.503');
+        $revendedor = Revendedora::findOrFail($id);
 
         return view('revendedora.edit')->with('revendedor',$revendedor);
 	}
@@ -88,18 +82,15 @@ class RevendedoraController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id, RevendedoraRequest $request)
+	public function update($id, Request $request)
 	{
-        $revendedor = Revendedora::find($id);
-
-        if(is_null($revendedor))
-            return view('errors.503');
+        $revendedor = Revendedora::findOrFail($id);
 
         $revendedor->update($request->all());
 
-        return redirect('revendedor')->with([
+        return redirect(route('revendedor.show', $revendedor->id))->with([
             'flash_type_message' => 'alert-success',
-            'flash_message' => 'Usuário atualizado com sucesso!'
+            'flash_message' => 'Revendedor atualizado com sucesso!'
         ]);
 	}
 
@@ -111,17 +102,14 @@ class RevendedoraController extends Controller {
 	 */
 	public function destroy($id)
 	{
-        $revendedor = Revendedora::find($id);
-
-        if(is_null($revendedor))
-            return view('errors.503');
+        $revendedor = Revendedora::findOrFail($id);
 
         $revendedor->pedidos()->delete();
         $revendedor->delete();
 
         return redirect('revendedor')->with([
             'flash_type_message' => 'alert-success',
-            'flash_message' => 'Usuário removido com sucesso!'
+            'flash_message' => 'Revendedor removido com sucesso!'
         ]);
 	}
 

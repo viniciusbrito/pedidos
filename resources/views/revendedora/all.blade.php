@@ -8,12 +8,16 @@
 
             <table class="table table-striped table-responsive">
                 <thead>
+                <td><strong>Código</strong></td>
                 <td><strong>Nome</strong></td>
                 <td><strong>Telefone</strong></td>
                 <td colspan="3"></td>
                 </thead>
                 @foreach($revendedores as $revendedor)
                     <tr>
+                        <td>
+                            {{ $revendedor->codigo }}
+                        </td>
                         <td>
                             {{ $revendedor->nome }}
                         </td>
@@ -30,7 +34,7 @@
                     </tr>
                 @endforeach
                 <tr>
-                    <td colspan="5" class="text-center">{!! $revendedores->render() !!}</td>
+                    <td colspan="6" class="text-center">{!! $revendedores->render() !!}</td>
                 </tr>
             </table>
         </div>

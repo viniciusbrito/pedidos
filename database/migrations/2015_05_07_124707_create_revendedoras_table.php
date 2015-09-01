@@ -21,8 +21,8 @@ class CreateRevendedorasTable extends Migration {
             $table->string('rg', 15);
             $table->date('nascimento');
             $table->string('telefone', 16);
-            $table->string('telefone2', 16);
-            $table->string('telefone3', 16);
+            $table->string('telefone2', 16)->nullable();
+            $table->string('telefone3', 16)->nullable();
             $table->string('endereco', 150);
             $table->string('bairro', 150);
             $table->string('cep', 9);
