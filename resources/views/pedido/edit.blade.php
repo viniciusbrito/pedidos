@@ -2,6 +2,7 @@
 @section('content')
 @include('partials.remover')
 @include('errors.list')
+@include('campanha.createProdutoModal')
 <legend><span class="glyphicon glyphicon-edit"></span> <strong>Revendedor:</strong> {{ $pedido->revendedora->nome }}</legend>
 
 <div class="panel panel-success">
@@ -104,5 +105,4 @@
         </tbody>
     </table>
 </div>
-
 @endsection

@@ -21,7 +21,7 @@
 
         <div class="col-sm-10">
             <div id="list_revendedor" class="list-group">
-                <div class="list-group"><!--Carrega aqui os dados de pesquisa do produto--></div>
+                <div class="list-group"><!--Carrega aqui os dados de pesquisa das revendedoras--></div>
             </div>
         </div>
     </div>
