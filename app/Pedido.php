@@ -47,7 +47,7 @@ class Pedido extends Model {
         {
             $soma += ($produto->preco * $produto->quantidade());
         }
-        return number_format($soma, 2);
+        return $soma;
     }
 
     /**
