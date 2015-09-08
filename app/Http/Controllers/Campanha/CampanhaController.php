@@ -52,6 +52,7 @@ class CampanhaController extends Controller {
     public function pedidos($id)
     {
         $campanha = Campanha::find($id);
+        $qt = 10;
 
         if(is_null($campanha))
             return view('errors.503');
@@ -74,23 +75,23 @@ class CampanhaController extends Controller {
                     break;
 
                 case 'create':
-                    $pedidos = $campanha->pedidos()->orderBy('created_at', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = $campanha->pedidos()->orderBy('created_at', $direc)->paginate($qt)->appends(Input::query());
                     break;
 
                 case 'update':
-                    $pedidos = $campanha->pedidos()->orderBy('updated_at', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = $campanha->pedidos()->orderBy('updated_at', $direc)->paginate($qt)->appends(Input::query());
                     break;
 
                 case 'status':
-                    $pedidos = $campanha->pedidos()->orderBy('status_id', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = $campanha->pedidos()->orderBy('status_id', $direc)->paginate($qt)->appends(Input::query());
                     break;
             }
         }
         else
         {
-            $pedidos = $campanha->pedidos()->orderBy('updated_at', 'desc')->paginate(5)->appends(Input::query());
+            $pedidos = $campanha->pedidos()->orderBy('updated_at', 'desc')->paginate($qt)->appends(Input::query());
         }
-        return view('campanha.pedidos')->with(['pedidos' => $pedidos, 'campanha' => $campanha]);
+        return view('campanha.pedidos', compact('pedidos','campanha'));
     }
 
     /**

@@ -29,7 +29,7 @@ class ProdutoController extends Controller {
         {
             //return redirect('/produto');
         }
-        $produtos = Produto::orderBy('nome')->paginate(5);
+        $produtos = Produto::orderBy('nome')->paginate(10);
         return view('produto.all')->with('produtos', $produtos);
     }
 

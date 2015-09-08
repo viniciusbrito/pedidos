@@ -34,6 +34,7 @@ class PedidoController extends Controller
      */
     public function index()
     {
+        $qt = 10;
         if(Input::get('order'))
         {
             if(Input::get('direc'))
@@ -47,34 +48,34 @@ class PedidoController extends Controller
                 case 'nome':
                     $pedidos = Pedido::join('revendedoras', 'revendedoras.id', '=', 'pedidos.revendedora_id')
                         ->orderBy('revendedoras.nome', $direc)
-                        ->paginate(5)->appends( Input::query());
+                        ->paginate($qt)->appends( Input::query());
                     break;
 
                 case 'create':
-                    $pedidos = Pedido::orderBy('created_at', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = Pedido::orderBy('created_at', $direc)->paginate($qt)->appends(Input::query());
                     break;
 
                 case 'update':
-                    $pedidos = Pedido::orderBy('updated_at', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = Pedido::orderBy('updated_at', $direc)->paginate($qt)->appends(Input::query());
                     break;
 
                 case 'status':
-                    $pedidos = Pedido::orderBy('status_id', $direc)->paginate(5)->appends(Input::query());
+                    $pedidos = Pedido::orderBy('status_id', $direc)->paginate($qt)->appends(Input::query());
                     break;
 
                 case 'campanha':
                     $pedidos = Pedido::join('campanhas', 'campanhas.id', '=', 'pedidos.campanha_id')
                         ->orderBy('campanhas.created_at', $direc)
-                        ->paginate(5)->appends( Input::query());
+                        ->paginate($qt)->appends( Input::query());
                     break;
             }
         }
         else
         {
-            $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate(5)->appends(Input::query());
+            $pedidos = Pedido::orderBy('updated_at', 'desc')->paginate($qt)->appends(Input::query());
         }
 
-        return view('pedido.index')->with(['pedidos' => $pedidos]);
+        return view('pedido.index', compact('pedidos'));
     }
 
     /**
