@@ -24,8 +24,10 @@ elixir(function(mix) {
         '../../../node_modules/vue/dist/vue.js',
         '../../../node_modules/vue-resource/dist/vue-resource.js',
         '../../../node_modules/jquery-mask-plugin/dist/jquery.mask.js',
+        'lodash.min.js',
         'mask.js',
         'custom.js',
+        'revend.js',
     ], 'public/assets/js/app.js');
 
     mix.copy('node_modules/bootstrap/dist/fonts', 'public/assets/fonts');

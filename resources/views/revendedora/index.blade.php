@@ -1,94 +1,125 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Revendedor</title>
+@extends('app')
+@section('content')
+    @include('partials.remover')
+    <legend><span class="glyphicon glyphicon-saved"></span> Revendedores Cadastrados</legend>
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-</head>
-<body>
-
-<nav class="navbar navbar-default navbar-fixed-top">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-ex1-collapse" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Home</a>
+    <app  id="revend">
+        {{--<div class="well">
+            <pre>@{{ search | json }}</pre>
+        </div>--}}
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input type="text" class="form-control" name="pesquisar" placeholder="Buscar revendedor" v-model="search.text" v-on="keyup:doFilter"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-4"><label for="">Buscar por:</label></div>
+                            <div class="col-sm-4"><input type="radio" name="buscarPor" value="nome" v-model="search.field" /> Nome </div>
+                            <div class="col-sm-4"><input type="radio" name="buscarPor" value="codigo" v-model="search.field"/> Código</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <select name="perPage" id="" class="form-control" v-model="paginate.perPage" v-on="change:doPerPage">
+                            <option value="5">Exbir 5 Revendedores por página</option>
+                            <option value="10">Exbir 10 Revendedores por página</option>
+                            <option value="15">Exbir 15 Revendedores por página</option>
+                            <option value="20">Exbir 20 Revendedores por página</option>
+                            <option value="25">Exbir 25 Revendedores por página</option>
+                            <option value="50">Exbir 50 Revendedores por página</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 text-right">
+                <a href="{{ url('/revendedor/create') }}" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Novo Revendedor</a>
+            </div>
         </div>
 
-        @if(!Auth::guest())
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Revendedors <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('revendedor') }}">Consultar</a></li>
-                            <li><a href="{{ url('revendedor/create') }}">Criar</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Produtos <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('produto') }}">Consultar</a></li>
-                            <li><a href="{{ url('produto/create') }}">Cadastrar Produto</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pedidos <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Consultar</a></li>
-                            <li><a href="#">Criar</a></li>
-                            <li><a href="#">Apagar</a></li>
-                        </ul>
-                    </li>
-                </ul>
+        <br/>
 
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown" role="menuitem">
-                        <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">Bem vindo {{ Auth::user()->name }} <span class="caret"></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Editar</a></li>
-                            <li><a href="{{ url('auth/logout') }}">Sair</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        @else
-            <div class="collapse navbar-collapse navbar-ex1-collapse" id="navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/auth/login') }}">Login</a></li>
-                    <li><a href="{{ url('/auth/register') }}">Register</a></li>>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        @endif
-    </div>
-</nav>
-
-<div class="container" style="padding-top:100px;">
-    @if(Session::has('flash_message'))
-        <div class="alert {{ Session::get('flash_type_message') }}">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-            <strong>{{session('flash_message')}}</strong>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <table class="table table-striped table-responsive">
+                        <thead>
+                        <tr>
+                            <td>
+                                <a href="#" v-on="click:doSortBy($event, 'codigo')">
+                                    <i class="fa fa-fw fa-sort"
+                                       v-class="fa-sort-amount-asc:sortBy.field == 'codigo' && sortBy.reverse == false,
+                                       fa-sort-amount-desc:sortBy.field == 'codigo' && sortBy.reverse == true">
+                                    </i>
+                                    <strong>Código</strong>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#" v-on="click:doSortBy($event, 'nome')">
+                                    <i class="fa fa-fw fa-sort"
+                                       v-class="fa-sort-amount-asc:sortBy.field == 'nome' && sortBy.reverse == false,
+                                           fa-sort-amount-desc:sortBy.field == 'nome' && sortBy.reverse == true">
+                                    </i>
+                                    <strong>Nome</strong>
+                                </a>
+                            </td>
+                            <td>
+                                <strong>Telefone</strong>
+                            </td>
+                            <td colspan="3"></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr v-repeat="revendedor:revendedores">
+                            <td>
+                                @{{ revendedor.codigo }}
+                            </td>
+                            <td>
+                                @{{ revendedor.nome }}
+                            </td>
+                            <td>
+                                @{{ revendedor.telefone }}
+                            </td>
+                            <td  class="text-center"><a href="revendedor/@{{ revendedor.id }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a></td>
+                            <td class="text-center"><a href="revendedor/@{{ revendedor.id }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td class="text-center">
+                                <form method="POST" action="revendedor/@{{ revendedor.id }}" accept-charset="UTF-8">
+                                    <input name="_method" type="hidden" value="DELETE">
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#removerModal" data-title="Remover Revendedor(a)" data-message="Você tem certeza que quer remover?">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav class="text-center">
+                    <ul class="pagination">
+                        <li v-class="disabled:paginate.currentPage == 1">
+                            <a href="#" aria-label="Previous" v-on="click:doPrevious">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li v-repeat="paginate.pageNum" v-class="active:paginate.currentPage == $value">
+                            <a href="#" v-on="click:doPage($event, $value)">@{{ $value }}</a>
+                        </li>
+                        <li v-class="disabled:paginate.currentPage == paginate.totalPages">
+                            <a href="#" aria-label="Next" v-on="click:doNext">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-    @endif
-    @yield('content')
-</div>
-
-<br/>
-<hr>
-&copy; <a href="#">vfb Desenvolvimento</a>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-</body>
-</html>
+    </app>
+@endsection
+@stop

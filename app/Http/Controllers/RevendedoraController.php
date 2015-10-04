@@ -22,7 +22,7 @@ class RevendedoraController extends Controller {
 	 */
 	public function index()
 	{
-        return view('revendedora.all')->with('revendedores', Revendedora::orderBy('nome')->paginate(10));
+        return view('revendedora.index');
 	}
 
 	/**
@@ -121,5 +121,10 @@ class RevendedoraController extends Controller {
         $revendedor  = Revendedora::where('nome', 'like', '%'.$key.'%')->orderBy('nome')->get()->toJson();
 
         return $revendedor;
+    }
+
+    public function all()
+    {
+        return Revendedora::orderBy('nome', 'asc')->get()->toJson();
     }
 }

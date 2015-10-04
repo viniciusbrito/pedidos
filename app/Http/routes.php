@@ -23,6 +23,8 @@ Route::resource('revendedor', 'RevendedoraController');
 
 Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 
+Route::get('api/revendedores/', ['as' => 'api.revendedores', 'uses' => 'RevendedoraController@all']);
+
 
 Route::group(['prefix' => 'campanha', 'namespace' => 'Campanha'], function() {
 
