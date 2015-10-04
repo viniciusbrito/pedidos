@@ -1,3 +1,7 @@
+/*----------------------------------------------------------------------------------------------------------------------
+ * @File: custom.js
+ * @autor: Vinicius Fernandes Brito
+ */
 $("#input_produto").keyup(function(event){
 
     $('#list_produto').empty();
@@ -133,3 +137,4 @@ $('#create_produto').on('submit', function(event){
     $('#list_produto').empty();
     $('#search_produto').submit();
 });
+/*--------------------------------------END File----------------------------------------------------------------------*/

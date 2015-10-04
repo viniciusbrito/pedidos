@@ -7,7 +7,7 @@
     <title>Web Pedidos</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
 </head>
 <body>
@@ -87,12 +87,13 @@
 <hr>
 &copy; <a href="#">vfb Desenvolvimento</a>
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+{{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script src="{{ asset('/js/jquery.maskedinput.js') }}"></script>
 <script src="{{ asset('/js/mask.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('/js/custom.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/custom.js') }}"></script>--}}
+<script type="text/javascript" src="{{ asset('assets/js/app.js') }}"></script>
 
 </body>
 </html>
