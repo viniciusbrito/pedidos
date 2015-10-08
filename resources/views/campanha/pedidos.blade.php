@@ -55,32 +55,27 @@
                         <div class="col-sm-4">
                             <strong>Ultima modificação:</strong> {{ $campanha->updated_at->format('d/m/Y H:i:s') }}
                         </div>
-                        <div class="col-sm-4">
+                        {{--<div class="col-sm-4">
                             @if(!$campanha->status)
                                 {!! Form::open(['method' => 'PATCH', 'route' => ['campanha.update', $campanha->id]]) !!}
-                                <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-check"></span> Finalizar Campanha</button>
+                                <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-check"></span> Encerrar Campanha</button>
                                 {!! Form::close() !!}
                             @endif
-                        </div>
+                        </div>--}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- novo pedido - pdf -->
-    @if(!$campanha->status)
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="{{ route('pedido.create', $campanha->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Novo Pedido</a>
-            </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <a href="{{ route('pedido.create', $campanha->id) }}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Criar Novo Pedido</a>
         </div>
-    @else
-        <div class="row">
-            <div class="col-sm-12">
-                @include('campanha.send', ['pedido_id' => $campanha->id])
-            </div>
+        <div class="col-sm-7">
+            @include('campanha.send', ['pedido_id' => $campanha->id])
         </div>
-    @endif
+    </div>
     <br/>
     <!-- lista os pedidos -->
     <div class="row">
