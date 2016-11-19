@@ -158,23 +158,23 @@ class CampanhaController extends Controller {
 
         /* Cria o arquivo pdf em storage/campanha/file_name */
 
-        $fileName = str_random(15).'_Campanha_'.$campanha->created_at->format('M').'.pdf';
+       {{-- $fileName = str_random(15).'_Campanha_'.$campanha->created_at->format('M').'.pdf';
         $path = storage_path().'/campanhas/'.$fileName;
         $pdf = App::make('dompdf');
         $pdf->loadView('pedido.pdf', ['campanha' => $campanha]);
         $pdf->save($path);
 
-        /* Envia o e-mail */
+        /* 
+Envia o e-mail */
         $dados['email'] = $request->email;
         $dados['path'] = $path;
-
-        Mail::raw('Segue em anexo os pedidos', function($message) use ($dados)
+        $mail = Mail::raw('Segue em anexo os pedidos', function($message) use ($dados)
         {
             $message->to($dados['email'])->cc('luciafernandesoliveira@hotmail.com');
 
             $message->subject("Pedidos " . Carbon::now()->format('d/m/Y'));
 
-            $message->attach($dados['path']);
+            //$message->attach($dados['path']);
         });
 
         $campanha->sent = true;

@@ -30,7 +30,7 @@
 
                 <div class="form-group">
                     {!! Form::label('preco', 'Preço') !!}
-                    {!! Form::text('preco', null, ['type' => 'tel', 'class' => 'form-control', 'placeholder' => 'Somente números', 'pattern'=> '?[0-9]{1,5},[0-9]{2}$']) !!}
+                    {!! Form::text('preco', null, ['type' => 'tel', 'class' => 'form-control', 'placeholder' => 'Somente número']) !!}
                 </div>
 
                 <div class="form-group">
