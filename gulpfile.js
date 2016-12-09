@@ -16,6 +16,7 @@ elixir(function(mix) {
     mix.styles([
         '../../../node_modules/bootstrap/dist/css/bootstrap.css',
         '../../../node_modules/font-awesome/css/font-awesome.css',
+        '../../../node_modules/jquery-bootgrid/dist/jquery.bootgrid.css',
     ], 'public/assets/css/app.css');
 
     mix.scripts([
@@ -24,6 +25,8 @@ elixir(function(mix) {
         '../../../node_modules/vue/dist/vue.js',
         '../../../node_modules/vue-resource/dist/vue-resource.js',
         '../../../node_modules/jquery-mask-plugin/dist/jquery.mask.js',
+        '../../../node_modules/jquery-bootgrid/dist/jquery.bootgrid.js',
+        'produto-grid.js',
         'lodash.min.js',
         'mask.js',
         'custom.js',
