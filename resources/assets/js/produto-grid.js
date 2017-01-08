@@ -21,6 +21,9 @@ $("#product-grid").bootgrid(
     }
 );
 
-var produtos = JSON.parse($('#produtos').val());
+if(window.location.pathname === '/produto') {
 
-$("#product-grid").bootgrid('append', produtos);
+	var produtos = JSON.parse($('#produtos').val());
+
+	$("#product-grid").bootgrid('append', produtos);
+}
