@@ -139,4 +139,17 @@ class RevendedoraController extends Controller {
 
         return view('revendedora.ficha')->with('revendedor',Revendedora::findOrFail($id));
     }
+
+    public function status($id)
+    {
+        $rev = Revendedora::findOrFail($id);
+
+        $rev->ativo = !$rev->ativo;
+        $rev->update();
+
+        return redirect(route('revendedor.index'))->with([
+            'flash_type_message' => 'alert-success',
+            'flash_message' => 'Revendedor atulizado com sucesso!'
+        ]);
+    }
 }

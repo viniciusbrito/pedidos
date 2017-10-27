@@ -21,6 +21,7 @@ Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoContr
 
 Route::resource('revendedor', 'RevendedoraController');
 Route::get('revendedor/{id}/ficha', 'RevendedoraController@ficha');
+Route::post('revendedor/{revendedor}/status', ['as' => 'revendedor.status', 'uses' => 'RevendedoraController@status']);
 
 Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 

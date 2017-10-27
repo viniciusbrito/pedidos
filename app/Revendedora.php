@@ -20,7 +20,8 @@ class Revendedora extends Model {
         'bairro',
         'cep',
         'cidade',
-        'uf'
+        'uf',
+        'ativo'
     ];
 
     protected $hidden = ['created_at', 'updated_at', 'deleted_at'];

@@ -1,6 +1,7 @@
 @extends('app')
 @section('content')
     @include('partials.remover')
+    @include('partials.desativar')
     <legend><span class="glyphicon glyphicon-saved"></span> Revendedores Cadastrados</legend>
 
     <app  id="revend">
@@ -85,6 +86,24 @@
                             </td>
                             <td>
                                 @{{ revendedor.telefone }}
+                            </td>
+                            <td v-show="revendedor.ativo" class="text-center">
+                                <form method="POST" action="/revendedor/@{{ revendedor.id }}/status" accept-charset="UTF-8">
+                                    {{--<input name="_method" type="hidden" value="DELETE">--}}
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#desativarModal" data-title="Desativar Revendedor(a)" data-message="Desativar @{{ revendedor.nome }}?">
+                                        Desativar
+                                    </button>
+                                </form>
+                            </td>
+                            <td v-show="!revendedor.ativo" class="text-center">
+                                <form method="POST" action="/revendedor/@{{ revendedor.id }}/status" accept-charset="UTF-8">
+                                    {{--<input name="_method" type="hidden" value="DELETE">--}}
+                                    <input name="_token" type="hidden" value="{{ csrf_token() }}">
+                                    <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#desativarModal" data-title="Ativar Revendedor(a)" data-message="Ativar @{{ revendedor.nome }}?">
+                                        Ativar
+                                    </button>
+                                </form>
                             </td>
                             <td  class="text-center"><a href="revendedor/@{{ revendedor.id }}" class="btn btn-primary" title="Visualizar"><span class="glyphicon glyphicon-eye-open"></span></a></td>
                             <td class="text-center"><a href="revendedor/@{{ revendedor.id }}/edit" class="btn btn-success" title="Editar"><span class="glyphicon glyphicon-edit"></span></a></td>
