@@ -20,6 +20,7 @@ Route::resource('produto', 'ProdutoController');
 Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoController@search']);
 
 Route::resource('revendedor', 'RevendedoraController');
+Route::get('revendedor/{id}/ficha', 'RevendedoraController@ficha');
 
 Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 

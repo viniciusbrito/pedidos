@@ -4,8 +4,10 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Revendedora;
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use App\Http\Requests\RevendedoraRequest;
+use Illuminate\Support\Facades\App;
 
 class RevendedoraController extends Controller {
 
@@ -25,7 +27,7 @@ class RevendedoraController extends Controller {
         return view('revendedora.index');
 	}
 
-	/**
+	/**pedido
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
@@ -126,5 +128,15 @@ class RevendedoraController extends Controller {
     public function all()
     {
         return Revendedora::orderBy('nome', 'asc')->get()->toJson();
+    }
+
+    public function ficha($id)
+    {
+        $revendedor = Revendedora::all()->take(4);
+
+        $snp = SnappyPdf::loadView('revendedora.ficha', ['revendedores' => $revendedor]);
+        return $snp->setPaper('a4')->setOption('margin-top' , 1)->setOption('zoom', 0.7)->stream('ficha.pdf');
+
+        return view('revendedora.ficha')->with('revendedor',Revendedora::findOrFail($id));
     }
 }

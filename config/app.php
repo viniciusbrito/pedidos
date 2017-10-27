@@ -148,6 +148,7 @@ return [
 		'App\Providers\RouteServiceProvider',
 
         'Barryvdh\DomPDF\ServiceProvider',
+        'Barryvdh\Snappy\ServiceProvider',
 
 	],
 
@@ -201,6 +202,9 @@ return [
         'Html'      =>  'Illuminate\Html\HtmlFacade',
 
         'PDF' => 'Barryvdh\DomPDF\Facade',
+
+        'SnappyPdf' => 'Barryvdh\Snappy\Facades\SnappyPdf',
+        'SnappyImage' => 'Barryvdh\Snappy\Facades\SnappyImage',
 
 	],
 
