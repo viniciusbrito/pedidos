@@ -19,13 +19,16 @@ Route::resource('produto', 'ProdutoController');
 
 Route::post('produto/search', ['as' => 'produto.search', 'uses' => 'ProdutoController@search']);
 
+Route::get('revendedor/fichas',['as' => 'revendedor.fichas', 'uses' => 'RevendedoraController@ficha']);
+
 Route::resource('revendedor', 'RevendedoraController');
-Route::get('revendedor/{id}/ficha', 'RevendedoraController@ficha');
 Route::post('revendedor/{revendedor}/status', ['as' => 'revendedor.status', 'uses' => 'RevendedoraController@status']);
 
 Route::post('revendedor/search', ['as' => 'revendedora.search', 'uses' => 'RevendedoraController@search']);
 
 Route::get('api/revendedores/', ['as' => 'api.revendedores', 'uses' => 'RevendedoraController@all']);
+
+
 
 
 Route::group(['prefix' => 'campanha', 'namespace' => 'Campanha'], function() {

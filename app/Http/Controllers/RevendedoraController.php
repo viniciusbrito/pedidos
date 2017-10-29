@@ -130,14 +130,12 @@ class RevendedoraController extends Controller {
         return Revendedora::orderBy('nome', 'asc')->get()->toJson();
     }
 
-    public function ficha($id)
+    public function ficha()
     {
-        $revendedor = Revendedora::all()->take(4);
+        $revendedor = Revendedora::where('ativo', true)->orderBy('nome')->get();
 
         $snp = SnappyPdf::loadView('revendedora.ficha', ['revendedores' => $revendedor]);
-        return $snp->setPaper('a4')->setOption('margin-top' , 1)->setOption('zoom', 0.7)->stream('ficha.pdf');
-
-        return view('revendedora.ficha')->with('revendedor',Revendedora::findOrFail($id));
+        return $snp->setPaper('a4')->setOption('margin-top' , 1)->setOption('zoom', 0.7)->stream('fichas.pdf');
     }
 
     public function status($id)
