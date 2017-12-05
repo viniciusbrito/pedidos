@@ -40,15 +40,15 @@
         <div class="row">
             <div class="col-xs-2">
                 <div class="form-group">
-                    <label for="estadoCivil">Estado Civil</label>
-                    <input type="text" value="" class="form-control input-sm"/>
+                    {!! Form::label('estadoCivil', 'Estado Civil') !!}
+                    {!! Form::text('estadoCivil', null, ['class' => 'form-control input-sm']) !!}
                 </div>
             </div>
 
             <div class="col-xs-1">
                 <div class="form-group">
-                    <label for="sexo">Sexo</label>
-                    <input type="text" value="" class="form-control input-sm"/>
+                    {!! Form::label('sexo', 'Sexo') !!}
+                    {!! Form::text('sexo', null, ['class' => 'form-control input-sm']) !!}
                 </div>
             </div>
 
@@ -142,13 +142,15 @@
                     </div>
             --}}
             <div class="col-xs-2">
-                <label for="situacaoResidencia">Situação Residencia</label>
-                <input type="text" value="" class="form-control input-sm"/>
-
+                {!! Form::label('situacaoResidencia', 'Situação Residencia') !!}
+                <?php
+                 $situacaoResidencia = [0 => 'Selecione', 1 => 'Propria (Liquidada)', 2 => 'Propria (Financiada)', 3 => 'Alugada', 4 => 'Pais', 5 => 'Parentes', 6 => 'Outros'];
+                ?>
+                {!! Form::text('situacaoResidencia', $situacaoResidencia[$revendedor->situacaoResidencia], ['class' => 'form-control input-sm']) !!}
             </div>
             <div class="col-xs-2">
-                <strong>Tempo de Residencia</strong>
-                <input type="text" value="" class="form-control input-sm"/>
+                {!! Form::label('tempoResidencia', 'Tempo de Residencia') !!}
+                {!! Form::text('tempoResidencia', null, ['class' => 'form-control input-sm']) !!}
             </div>
             {{--        <div class="col-xs-2">
                         <label for="numeroDependentes">Nº de Dependentes</label>
@@ -161,26 +163,26 @@
                         <strong>E-mail</strong> <small>Autoriza o envio de mensagens por SMS no celular e por e-mail</small>
                     </div>
                     <div class="col-xs-2">
-                        <input type="checkbox" name="autorizacaoSMS" value="" class="input-sm"/>
+                        {!! Form::checkbox('autorizacaoSMS', $revendedor->autorizacaoSMS, []) !!}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <input type="text" value="" class="form-control input-sm"/>
+                        {!! Form::text('email', null, ['class' => 'form-control input-sm']) !!}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-xs-8">
-                <strong>Nome da Mãe</strong>
-                <input type="text" class="form-control input-sm"/>
+            <div class="col-xs-6">
+                {!! Form::label('nomeMae', 'Nome da Mãe') !!}
+                {!! Form::text('nomeMae', null, ['class' => 'form-control input-sm']) !!}
             </div>
 
-            <div class="col-xs-4">
-                <strong>Data Nascimento da Mãe</strong>
-                <input type="text" class="form-control input-sm"/>
+            <div class="col-xs-3">
+                {!! Form::label('nascimentoMae', 'Data Nascimento da Mãe') !!}
+                {!! Form::text('nascimentoMae', $revendedor->nascimentoMae->format('d-m-Y'), ['class' => 'form-control input-sm']) !!}
             </div>
         </div>
 
@@ -190,21 +192,21 @@
         <div class="row">
             <div class="col-xs-6">
                 <div class="form-group">
-                    <label for="nomeConjuge">Nome</label>
-                    <input type="text" name="nomeConjuge" class="form-control input-sm"/>
+                    {!! Form::label('nomeConjuge', 'Nome') !!}
+                    {!! Form::text('nomeConjuge', null, ['class' => 'form-control input-sm']) !!}
                 </div>
             </div>
 
             <div class="col-xs-3">
                 <div class="form-group">
-                    <label for="nascimentoConjuge">Data Nascimento</label>
-                    <input type="text" name="nascimentoConjuge" class="form-control input-sm"/>
+                    {!! Form::label('nascimentoConjuge', 'Data Nascimento') !!}
+                    {!! Form::text('nascimentoConjuge', $revendedor->nascimentoConjuge->format('d-m-Y'), ['class' => 'form-control input-sm']) !!}
                 </div>
             </div>
             <div class="col-xs-3">
                 <div class="form-group">
-                    <label for="telefoneConjuge">Telefone</label>
-                    <input type="text" name="telefoneConjuge" class="form-control input-sm"/>
+                    {!! Form::label('telefoneConjuge', 'Telefone') !!}
+                    {!! Form::text('telefoneConjuge', null, ['class' => 'form-control input-sm']) !!}
                 </div>
             </div>
         </div>

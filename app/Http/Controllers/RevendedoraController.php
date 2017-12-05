@@ -87,6 +87,7 @@ class RevendedoraController extends Controller {
 	public function update($id, Request $request)
 	{
         $revendedor = Revendedora::findOrFail($id);
+        (!isset($request['autorizacaoSMS']))? $request['autorizacaoSMS'] = 0 : $request['autorizacaoSMS'] = 1;
 
         $revendedor->update($request->all());
 
