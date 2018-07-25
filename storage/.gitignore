@@ -1,3 +1,4 @@
 laravel.log
 logs/*
 backup/
+pedidos.sql.backup
